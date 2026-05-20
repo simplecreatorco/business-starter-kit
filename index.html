@@ -25,7 +25,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: var(--color-body-text); line-height: 1.75; min-height: 100vh; min-height: 100dvh; -webkit-text-size-adjust: 100%; }
+body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: var(--color-body-text); line-height: 1.75; min-height: 100vh; }
 
 /* ===== LOGIN ===== */
 .login-screen {
@@ -55,7 +55,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
 .login-welcome { font-family: 'Fraunces', serif; font-weight: 400; font-size: 16px; color: var(--color-primary); margin-bottom: 16px; }
 
 /* ===== APP LAYOUT ===== */
-.app-wrap { display: none; height: 100vh; height: 100dvh; }
+.app-wrap { display: none; height: 100vh; }
 .app-wrap.visible { display: flex; }
 
 /* ===== SIDEBAR ===== */
@@ -97,7 +97,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
 .sidebar-logout { font-size: 11px; color: var(--color-body-light); text-decoration: underline; background: none; border: none; cursor: pointer; font-family: 'Nunito', sans-serif; margin-left: 8px; }
 
 /* ===== MAIN CONTENT ===== */
-.main-area { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.main-area { flex: 1; overflow-y: auto; }
 .lesson-content { max-width: 720px; margin: 0 auto; padding: 48px 40px 80px; }
 .lesson-content.hidden { display: none; }
 
@@ -353,7 +353,9 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
 .sidebar-overlay { display: none; }
 
 /* ===== SIDEBAR DRAWER MODE =====
-   Collapse sidebar into a hamburger drawer for anything under 1100px.
+   The Claude preview iframe is ~700-800px wide, so the two-column layout
+   doesn't work there. Collapse sidebar into a hamburger drawer for anything
+   under 1100px. On a standalone page at full width, the sidebar shows normally.
 */
 @media (max-width: 1100px) {
   .app-wrap.visible { flex-direction: column; }
@@ -370,86 +372,25 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
   .mobile-header {
     display: flex; align-items: center; gap: 12px; padding: 16px 20px;
     background: var(--color-surface); border-bottom: 1px solid #eee;
-    position: sticky; top: 0; z-index: 50;
   }
   .hamburger {
     width: 36px; height: 36px; border-radius: 8px; border: 2px solid #e8e8e8;
     background: none; cursor: pointer; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 4px; flex-shrink: 0;
+    align-items: center; justify-content: center; gap: 4px;
   }
   .hamburger span { width: 18px; height: 2px; background: var(--color-primary); border-radius: 2px; }
   .mobile-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: 16px; text-transform: uppercase; color: var(--color-primary); letter-spacing: -0.5px; }
   .mobile-progress { margin-left: auto; font-size: 12px; color: var(--color-body-light); font-weight: 700; }
-  .lesson-content { padding: 28px 20px 80px; }
-  .nudge-banner { padding: 12px 16px; gap: 10px; flex-wrap: wrap; }
+  .lesson-content { padding: 32px 24px 80px; }
+  .nudge-banner { padding: 12px 16px; gap: 10px; }
   .nudge-text { font-size: 13px; }
-  .lesson-nav { flex-wrap: wrap; gap: 10px; }
-  .nav-btn { font-size: 10px; padding: 12px 20px; letter-spacing: 2px; }
 }
 
-/* ===== MOBILE PHONES ===== */
-@media (max-width: 600px) {
-  .lesson-content { padding: 20px 16px 80px; }
-  .content-card { padding: 20px 16px; border-radius: 12px; }
-  .content-card h3 { font-size: 18px; }
-  .content-card p { font-size: 14px; line-height: 1.7; }
-  .content-card ul { font-size: 14px; line-height: 1.7; margin-left: 16px; }
+@media (max-width: 500px) {
+  .lesson-content { padding: 24px 16px 60px; }
+  .content-card { padding: 20px 16px; }
   .resource-grid { grid-template-columns: 1fr; }
-  .audio-player { padding: 14px 16px; border-radius: 12px; }
-  .audio-player-bar { gap: 8px; }
-  .play-btn { width: 36px; height: 36px; font-size: 12px; }
-  .lesson-tag { font-size: 10px; letter-spacing: 2px; }
-  .lesson-title { font-size: clamp(22px, 6vw, 28px); margin-bottom: 6px; }
-  .lesson-desc { font-size: 14px; margin-bottom: 20px; }
-  .tip-box { padding: 14px 16px; font-size: 13px; border-radius: 10px; }
-  .checklist-item { padding: 12px 0; gap: 10px; }
-  .check-box { width: 22px; height: 22px; border-radius: 5px; }
-  .check-label { font-size: 14px; line-height: 1.5; }
-  .mark-complete-btn { padding: 14px 28px; font-size: 11px; letter-spacing: 2px; }
-  .mark-complete-row { margin-top: 20px; }
-  .lesson-nav { margin-top: 24px; padding-top: 20px; }
-  .nav-btn { font-size: 10px; padding: 11px 18px; letter-spacing: 2px; white-space: nowrap; }
-  .content-divider { font-size: 9px; letter-spacing: 2px; margin-bottom: 20px; }
-  .next-step-card { flex-direction: column; gap: 12px; padding: 20px 16px; border-radius: 12px; }
-  .next-step-number { width: 32px; height: 32px; font-size: 14px; }
-  .next-step-title { font-size: 18px; }
-  .next-step-desc { font-size: 13px; }
-  .next-step-btn { font-size: 9px; padding: 9px 18px; letter-spacing: 2px; }
-  .next-section-title { font-size: clamp(24px, 6vw, 32px); }
-  .next-section-desc { font-size: 14px; }
-  .celeb-emoji { font-size: 48px; }
-  .celeb-title { font-size: 26px; }
-  .celeb-text { font-size: 14px; }
-  .celebration-header { padding: 8px 0 4px; }
-  .nudge-banner { bottom: 0; padding: 12px 12px; gap: 8px; }
-  .nudge-text { font-size: 12px; flex: 1; min-width: 0; }
-  .nudge-btn { padding: 8px 16px; font-size: 9px; letter-spacing: 1.5px; }
-  .save-toast { bottom: 12px; right: 12px; font-size: 9px; padding: 8px 16px; }
-  /* Login card mobile */
-  .login-card { padding: 32px 24px; border-radius: 16px; }
-  .login-title { font-size: clamp(24px, 7vw, 36px); }
-  .login-desc { font-size: 13px; margin-bottom: 20px; }
-  .login-input { padding: 12px 16px; font-size: 14px; }
-  .login-btn { padding: 14px; font-size: 11px; letter-spacing: 2px; }
-  /* Resource cards inline (lesson 5) */
-  .resource-card { padding: 14px 16px !important; }
-  .resource-name { font-size: 9px; }
-  .resource-desc { font-size: 11px; }
-  /* Locked page */
-  #lessonNextLocked > div { padding: 40px 16px !important; }
-}
-
-/* ===== VERY SMALL PHONES (iPhone SE, etc) ===== */
-@media (max-width: 380px) {
-  .lesson-content { padding: 16px 12px 80px; }
-  .content-card { padding: 16px 12px; }
-  .content-card h3 { font-size: 17px; }
-  .lesson-title { font-size: 22px; }
-  .nav-btn { padding: 10px 14px; font-size: 9px; }
-  .mark-complete-btn { padding: 12px 20px; font-size: 10px; letter-spacing: 1.5px; }
-  .mobile-header { padding: 12px 14px; }
-  .mobile-title { font-size: 14px; }
-  .login-card { padding: 24px 16px; }
+  .audio-player { padding: 14px 16px; }
 }
 </style>
 </head>
@@ -1174,4 +1115,694 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
           <h3>Close the Laptop</h3>
           <p>When your work hours are over, close the laptop. Not minimize the tab. Close the whole thing. Put it away. Walk away.</p>
           <p>I keep my laptop in my office. It doesn't come to the couch. It doesn't come to the dinner table. When I leave my office, work stays there. That one boundary has probably been the single most effective thing I've done for my mental health as a business owner.</p>
-          <p>You're building this busine
+          <p>You're building this business so you can have a better life. Not so your business can take over your life. Protect your time. It's the most valuable thing you have.</p>
+        </div>
+
+        <div class="checklist">
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <div class="check-box">&#10003;</div>
+            <div class="check-label">Write down your specific work hours and days</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <div class="check-box">&#10003;</div>
+            <div class="check-label">Tell your partner or someone in your house about your work schedule</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <div class="check-box">&#10003;</div>
+            <div class="check-label">Turn off your Instagram notifications (all of them, right now)</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <div class="check-box">&#10003;</div>
+            <div class="check-label">Set a specific time to batch-respond to emails and DMs during work hours</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <div class="check-box">&#10003;</div>
+            <div class="check-label">When your work time is over, close the laptop. Not minimize. Close.</div>
+          </div>
+        </div>
+
+        <div class="tip-box">&#128161; <strong>You did it.</strong> All 8 lessons. Your business has a real foundation now. You've got a name, a domain, you're registered, you have a professional email, a bookkeeping system, a way for people to buy from you, a workspace, and boundaries. You didn't just think about it. You built it. Now go make your first sale. Or your next one.</div>
+      </div>
+
+      <div class="mark-complete-row">
+        <button class="mark-complete-btn" id="completeBtn8" onclick="markComplete(8)">&#10003; Mark Lesson Complete</button>
+      </div>
+      <div class="lesson-nav">
+        <button class="nav-btn secondary" onclick="goLesson(7)">&#8592; Back</button>
+        <div class="nav-spacer"></div>
+      </div>
+    </div>
+
+    <!-- NEXT STEPS: LOCKED STATE -->
+    <div class="lesson-content hidden" id="lessonNextLocked">
+      <div style="text-align:center; padding:60px 20px;">
+        <div style="font-size:48px; margin-bottom:12px;">&#128274;</div>
+        <div class="lesson-title" style="margin-bottom:12px;">What's Next</div>
+        <p style="font-size:15px; color:var(--color-body-text); max-width:400px; margin:0 auto 24px; line-height:1.7;">This page unlocks when you complete all 8 lessons. It's your personalized roadmap for what to do after your foundation is set.</p>
+        <div style="background:var(--color-surface); border-radius:16px; padding:24px; border:1px solid #eee; max-width:360px; margin:0 auto;">
+          <div style="font-family:'Quick',sans-serif; font-size:10px; text-transform:uppercase; letter-spacing:3px; color:var(--color-coral); margin-bottom:8px;">Your Progress</div>
+          <div style="font-size:32px; font-family:'Fraunces',serif; font-weight:900; color:var(--color-primary); margin-bottom:4px;" id="lockedCount">0 of 8</div>
+          <div style="font-size:13px; color:var(--color-body-light);">lessons complete</div>
+        </div>
+        <button class="nav-btn primary" onclick="goLesson(1)" style="margin-top:24px;">Go Back to Your Lessons &#8594;</button>
+      </div>
+    </div>
+
+    <!-- NEXT STEPS: UNLOCKED (shows after all 8 complete) -->
+    <div class="lesson-content hidden" id="lessonNext">
+      <div class="celebration-header">
+        <div class="celeb-emoji">&#127881;</div>
+        <div class="celeb-title">You Did It!</div>
+        <div class="celeb-text">You now have a legitimate business foundation. Domain registered, legal structure handled, books set up, workspace ready, boundaries in place.</div>
+        <div class="celeb-text" style="font-size:14px; color:var(--color-body-light); margin-bottom:0;">Most people never get past "thinking about it." You just built the whole thing. That's huge.</div>
+      </div>
+
+      <div class="next-section-header">
+        <div class="next-section-tag">Your Roadmap</div>
+        <div class="next-section-title">What's Next</div>
+        <p class="next-section-desc">The foundation is done. Here's where to go from here to start building the business on top of it.</p>
+      </div>
+
+      <div class="written-content">
+        <div class="next-step-card">
+          <div class="next-step-number">1</div>
+          <div class="next-step-content">
+            <div class="next-step-tag">Recommended Next</div>
+            <div class="next-step-title">Brand Detective</div>
+            <div class="next-step-desc">Figure out your brand identity and messaging using AI. You'll walk away with your brand name direction, color palette, voice guide, and website copy. All generated from your own words and story.</div>
+            <a class="next-step-btn" href="#">Grab the Brand Detective &#8594;</a>
+          </div>
+        </div>
+
+        <div class="next-step-card">
+          <div class="next-step-number">2</div>
+          <div class="next-step-content">
+            <div class="next-step-tag">Quick Win</div>
+            <div class="next-step-title">6-Figure Branding Hacks</div>
+            <div class="next-step-desc">The exact tools and shortcuts I used to build an entire brand in 24 hours that went on to hit six figures in 10 months. Coolors, Canva, Pinterest mood boarding, AI. All of it in one guide.</div>
+            <a class="next-step-btn" href="#">Get the Guide &#8594;</a>
+          </div>
+        </div>
+
+        <div class="next-step-card">
+          <div class="next-step-number">3</div>
+          <div class="next-step-content">
+            <div class="next-step-tag">Get Found</div>
+            <div class="next-step-title">Instagram Passive Sales System</div>
+            <div class="next-step-desc">Stop posting into the void. Learn the system that lets Instagram work for you without posting every single day. A $5/day strategy that changes everything.</div>
+            <a class="next-step-btn" href="#">Check Out IPSS &#8594;</a>
+          </div>
+        </div>
+
+        <div class="next-step-card">
+          <div class="next-step-number">4</div>
+          <div class="next-step-content">
+            <div class="next-step-tag">Level Up</div>
+            <div class="next-step-title">Want More Support?</div>
+            <div class="next-step-desc">The SCC student community is where you can connect with other women building businesses just like yours. Share wins, ask questions, get feedback, and never feel like you're figuring this out alone.</div>
+            <a class="next-step-btn" href="#">Learn About the Community &#8594;</a>
+          </div>
+        </div>
+
+        <div class="tip-box" style="text-align:center; margin-top:20px;">
+          &#128140; <strong>One more thing:</strong> Take a second to celebrate. You just did what most people only talk about. Screenshot your completed progress bar and tag @simplecreatorco. We want to cheer you on.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STICKY NUDGE BANNER (inside main-area) -->
+  <div class="nudge-banner" id="nudgeBanner">
+    <div class="nudge-text" id="nudgeBannerText">&#9989; Done reading? Don't forget to mark this lesson complete!</div>
+    <button class="nudge-btn" id="nudgeBannerBtn" onclick="markCompleteFromBanner()">Mark Complete</button>
+    <button class="nudge-dismiss" onclick="dismissNudge()" title="Dismiss">&#10005;</button>
+  </div>
+
+</div>
+
+<div class="save-toast" id="saveToast">Saved</div>
+
+<script>
+const KEY_PREFIX = 'scc_bsk_';
+const TOTAL_LESSONS = 8;
+let currentEmail = '';
+let currentLesson = 1;
+let completedLessons = new Set();
+let checklistState = {}; // { lessonNum: [true, false, true, ...] }
+let sTimer;
+
+// Nudge system state
+let nudgeBannerTimer = null;
+let nudgePulseTimer = null;
+let nudgeDismissed = false;
+
+// Per-lesson timing (in seconds)
+// Based on content length: how long it would take to read + do checklist items
+const lessonTiming = {
+  1: { pulse: 180, banner: 240 },   // 3 min pulse, 4 min banner (shorter lesson, just reading)
+  2: { pulse: 300, banner: 420 },   // 5 min pulse, 7 min banner (reading + registering domain)
+  3: { pulse: 300, banner: 420 },   // 5 min pulse, 7 min banner (reading + filing LLC/EIN)
+  4: { pulse: 300, banner: 420 },   // 5 min pulse, 7 min banner (reading + email setup)
+  5: { pulse: 300, banner: 420 },   // 5 min pulse, 7 min banner (reading + spreadsheet setup)
+  6: { pulse: 360, banner: 480 },   // 6 min pulse, 8 min banner (reading + platform decisions)
+  7: { pulse: 240, banner: 360 },   // 4 min pulse, 6 min banner (fun lesson, lighter)
+  8: { pulse: 300, banner: 420 },   // 5 min pulse, 7 min banner (reading + settings changes)
+};
+
+const lessonData = [
+  { num: 1, label: 'Your "Why"', tag: 'Mindset' },
+  { num: 2, label: 'Name Your Business', tag: 'Setup' },
+  { num: 3, label: 'Make It Legal', tag: 'Setup' },
+  { num: 4, label: 'Custom Email', tag: 'Setup' },
+  { num: 5, label: 'Get Your Money Right', tag: 'Setup' },
+  { num: 6, label: 'Your Digital HQ', tag: 'Website' },
+  { num: 7, label: 'Your Workspace', tag: 'Fun' },
+  { num: 8, label: 'Set Your Boundaries', tag: 'Life' },
+];
+
+const nudgeMessages = [
+  { text: "Finished this lesson? Don't forget to mark it done!" },
+];
+
+// ===== STORAGE HELPERS =====
+// window.storage is the cross-device sync layer (persistent storage API)
+// localStorage is the fast local cache
+function storageKey(email) {
+  return KEY_PREFIX + email.replace(/[^a-z0-9@._\-]/g, '');
+}
+
+function buildSaveData() {
+  return JSON.stringify({
+    completed: Array.from(completedLessons),
+    currentLesson,
+    checklists: checklistState,
+    lastSaved: new Date().toISOString()
+  });
+}
+
+async function persist() {
+  if (!currentEmail) return;
+  const key = storageKey(currentEmail);
+  const data = buildSaveData();
+  // Always write to both — window.storage is the sync source, localStorage is fast cache
+  if (window.storage) {
+    try { await window.storage.set(key, data, true); } catch(e) { console.log('storage.set failed:', e); }
+  }
+  try { localStorage.setItem(key, data); } catch(e) {}
+}
+
+async function loadData(email) {
+  const key = storageKey(email);
+  let data = null;
+  // Try window.storage FIRST (cross-device sync source of truth)
+  if (window.storage) {
+    try {
+      const result = await window.storage.get(key, true);
+      if (result && result.value) {
+        data = JSON.parse(result.value);
+        // Also update localStorage cache so it's fresh
+        try { localStorage.setItem(key, result.value); } catch(e) {}
+      }
+    } catch(e) { console.log('storage.get failed:', e); }
+  }
+  // Fall back to localStorage only if window.storage had nothing
+  if (!data) {
+    try {
+      const r = localStorage.getItem(key);
+      if (r) data = JSON.parse(r);
+    } catch(e) {}
+  }
+  return data;
+}
+
+// ===== LOGIN =====
+function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    document.getElementById('loginError').style.display = 'block'; return;
+  }
+  document.getElementById('loginError').style.display = 'none';
+  currentEmail = email;
+  // Remember email locally for "welcome back"
+  try { localStorage.setItem('scc_bsk_email', email); } catch(e) {}
+  document.getElementById('loginBtn').textContent = 'Loading...';
+  document.getElementById('loginBtn').disabled = true;
+  loadUserData(email);
+}
+
+function doLogout() {
+  currentEmail = '';
+  try { localStorage.removeItem('scc_bsk_email'); } catch(e) {}
+  document.getElementById('appWrap').classList.remove('visible');
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('loginEmail').value = '';
+  document.getElementById('loginWelcome').style.display = 'none';
+  document.getElementById('loginBtn').textContent = "Let's Do This \u2192";
+  document.getElementById('loginBtn').disabled = false;
+}
+
+async function loadUserData(email) {
+  const data = await loadData(email);
+
+  if (data) {
+    completedLessons = new Set(data.completed || []);
+    currentLesson = data.currentLesson || 1;
+    checklistState = data.checklists || {};
+  } else {
+    completedLessons = new Set();
+    currentLesson = 1;
+    checklistState = {};
+  }
+
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('appWrap').classList.add('visible');
+  document.getElementById('sidebarEmail').textContent = email;
+
+  // Restore completed button states
+  completedLessons.forEach(n => {
+    const btn = document.getElementById('completeBtn' + n);
+    if (btn) { btn.innerHTML = '&#10003; Completed!'; btn.classList.add('completed'); }
+  });
+
+  // Restore checklist states
+  restoreChecklists();
+
+  renderSidebar();
+  goLesson(currentLesson);
+  setupScrollNudge();
+}
+
+function restoreChecklists() {
+  Object.entries(checklistState).forEach(([lessonNum, states]) => {
+    const lesson = document.getElementById('lesson' + lessonNum);
+    if (!lesson) return;
+    const items = lesson.querySelectorAll('.checklist-item');
+    states.forEach((checked, idx) => {
+      if (items[idx] && checked) items[idx].classList.add('checked');
+    });
+  });
+}
+
+function saveChecklistState(lessonNum) {
+  const lesson = document.getElementById('lesson' + lessonNum);
+  if (!lesson) return;
+  const items = lesson.querySelectorAll('.checklist-item');
+  checklistState[lessonNum] = Array.from(items).map(item => item.classList.contains('checked'));
+}
+
+// ===== AUTO-LOGIN CHECK =====
+(function() {
+  try {
+    const saved = localStorage.getItem('scc_bsk_email');
+    if (saved) {
+      document.getElementById('loginEmail').value = saved;
+      document.getElementById('loginWelcome').textContent = 'Welcome back!';
+      document.getElementById('loginWelcome').style.display = 'block';
+    }
+  } catch(e) {}
+})();
+
+function toast() {
+  const t = document.getElementById('saveToast');
+  t.classList.add('show');
+  clearTimeout(sTimer);
+  sTimer = setTimeout(() => t.classList.remove('show'), 1100);
+}
+
+// ===== SIDEBAR =====
+function renderSidebar() {
+  const nav = document.getElementById('sidebarNav');
+  const allDone = completedLessons.size === TOTAL_LESSONS;
+  let html = lessonData.map(l => {
+    const isActive = l.num === currentLesson;
+    const isDone = completedLessons.has(l.num);
+    return `<div class="nav-item ${isActive ? 'active' : ''} ${isDone ? 'completed' : ''}" onclick="goLesson(${l.num})">
+      <div class="nav-check">${isDone ? '&#10003;' : l.num}</div>
+      <div>
+        <div class="nav-tag">${l.tag}</div>
+        <div class="nav-label">${l.label}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Always show "What's Next" — locked or unlocked
+  const isActive = currentLesson === 'next';
+  if (allDone) {
+    html += `<div class="nav-item ${isActive ? 'active' : ''}" onclick="goLesson('next')" style="border-top:2px solid var(--color-yellow); margin-top:8px; padding-top:16px;">
+      <div class="nav-check" style="background:var(--color-yellow);border-color:var(--color-yellow);color:#fff;font-size:14px;">&#10024;</div>
+      <div>
+        <div class="nav-tag" style="color:var(--color-yellow);">Unlocked</div>
+        <div class="nav-label" style="color:var(--color-primary);font-weight:700;">What's Next</div>
+      </div>
+    </div>`;
+  } else {
+    html += `<div class="nav-item ${isActive ? 'active' : ''}" onclick="goLesson('next')" style="border-top:1px solid #eee; margin-top:8px; padding-top:16px; cursor:pointer;">
+      <div class="nav-check" style="font-size:13px;">&#128274;</div>
+      <div>
+        <div class="nav-tag" style="color:var(--color-coral);">Complete all 8 to unlock</div>
+        <div class="nav-label" style="color:var(--color-primary);">What's Next &#8594;</div>
+      </div>
+    </div>`;
+  }
+
+  nav.innerHTML = html;
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = completedLessons.size;
+  const pct = Math.round(done / TOTAL_LESSONS * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').innerHTML = `<strong>${done} of ${TOTAL_LESSONS}</strong> lessons complete`;
+  const mp = document.getElementById('mobileProgress');
+  if (mp) mp.textContent = pct + '%';
+}
+
+// ===== NAVIGATION =====
+function goLesson(n) {
+  currentLesson = n;
+  // Hide all lesson pages
+  for (let i = 1; i <= TOTAL_LESSONS; i++) {
+    const el = document.getElementById('lesson' + i);
+    if (el) el.classList.toggle('hidden', i !== n);
+  }
+  // Handle next steps page
+  const nextPage = document.getElementById('lessonNext');
+  const lockedPage = document.getElementById('lessonNextLocked');
+  if (n === 'next') {
+    const allDone = completedLessons.size === TOTAL_LESSONS;
+    if (nextPage) nextPage.classList.toggle('hidden', !allDone);
+    if (lockedPage) {
+      lockedPage.classList.toggle('hidden', allDone);
+      // Update locked count
+      const lc = document.getElementById('lockedCount');
+      if (lc) lc.textContent = completedLessons.size + ' of ' + TOTAL_LESSONS;
+    }
+  } else {
+    if (nextPage) nextPage.classList.add('hidden');
+    if (lockedPage) lockedPage.classList.add('hidden');
+  }
+
+  renderSidebar();
+  if (n !== 'next') persist();
+  document.getElementById('mainArea').scrollTop = 0;
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('visible');
+
+  // Reset nudge state for new lesson
+  resetNudge();
+  if (typeof n === 'number') startNudgeTimer();
+}
+
+// ===== MARK COMPLETE =====
+function markComplete(n) {
+  if (completedLessons.has(n)) return;
+  completedLessons.add(n);
+  const btn = document.getElementById('completeBtn' + n);
+  btn.innerHTML = '&#10003; Completed!';
+  btn.classList.add('completed');
+  btn.classList.remove('nudge-pulse');
+  // Also save checklist state for this lesson
+  saveChecklistState(n);
+  persist();
+  toast();
+  renderSidebar();
+  hideNudgeBanner();
+
+  // Check all complete
+  if (completedLessons.size === TOTAL_LESSONS) {
+    setTimeout(() => showCelebration(), 800);
+  }
+}
+
+function markCompleteFromBanner() {
+  markComplete(currentLesson);
+}
+
+function showCelebration() {
+  // Navigate to the next steps page
+  currentLesson = 'next';
+  for (let i = 1; i <= TOTAL_LESSONS; i++) {
+    const el = document.getElementById('lesson' + i);
+    if (el) el.classList.add('hidden');
+  }
+  const nextPage = document.getElementById('lessonNext');
+  if (nextPage) nextPage.classList.remove('hidden');
+  document.getElementById('mainArea').scrollTop = 0;
+  renderSidebar();
+  fireConfetti();
+}
+
+// ===== NUDGE SYSTEM =====
+function startNudgeTimer() {
+  clearTimeout(nudgeBannerTimer);
+  clearTimeout(nudgePulseTimer);
+  if (completedLessons.has(currentLesson)) return;
+
+  const timing = lessonTiming[currentLesson] || { pulse: 300, banner: 420 };
+
+  // Pulse the complete button after the lesson's read time
+  nudgePulseTimer = setTimeout(() => {
+    if (!completedLessons.has(currentLesson)) {
+      const btn = document.getElementById('completeBtn' + currentLesson);
+      if (btn && !btn.classList.contains('completed')) {
+        btn.classList.add('nudge-pulse');
+      }
+    }
+  }, timing.pulse * 1000);
+
+  // Show sticky banner after longer time (they've had time to read AND do the checklist)
+  nudgeBannerTimer = setTimeout(() => {
+    if (!completedLessons.has(currentLesson) && !nudgeDismissed) {
+      showNudgeBanner();
+    }
+  }, timing.banner * 1000);
+}
+
+function setupScrollNudge() {
+  // Scroll-based pulse only (no inline nudge)
+  const mainArea = document.getElementById('mainArea');
+  mainArea.addEventListener('scroll', () => {
+    if (completedLessons.has(currentLesson)) return;
+    const lesson = document.getElementById('lesson' + currentLesson);
+    if (!lesson) return;
+    const maxScroll = lesson.scrollHeight - mainArea.clientHeight;
+    if (maxScroll <= 0) return;
+    const scrollPct = mainArea.scrollTop / maxScroll;
+    if (scrollPct > 0.8 && !completedLessons.has(currentLesson)) {
+      const btn = document.getElementById('completeBtn' + currentLesson);
+      if (btn && !btn.classList.contains('completed')) {
+        btn.classList.add('nudge-pulse');
+      }
+    }
+  });
+}
+
+function showNudgeBanner() {
+  const banner = document.getElementById('nudgeBanner');
+  const msg = nudgeMessages[Math.floor(Math.random() * nudgeMessages.length)];
+  document.getElementById('nudgeBannerText').textContent = msg.text;
+  banner.classList.add('visible');
+}
+
+function hideNudgeBanner() {
+  document.getElementById('nudgeBanner').classList.remove('visible');
+}
+
+function dismissNudge() {
+  nudgeDismissed = true;
+  hideNudgeBanner();
+}
+
+function resetNudge() {
+  clearTimeout(nudgeBannerTimer);
+  clearTimeout(nudgePulseTimer);
+  nudgeDismissed = false;
+  hideNudgeBanner();
+  document.querySelectorAll('.mark-complete-btn').forEach(btn => {
+    if (!btn.classList.contains('completed')) btn.classList.remove('nudge-pulse');
+  });
+}
+
+// ===== CONFETTI =====
+function fireConfetti() {
+  const container = document.createElement('div');
+  container.className = 'confetti-container';
+  document.body.appendChild(container);
+  const colors = ['#F49C8E', '#F3B548', '#BFD9CC', '#B3DCDA', '#F6D5CD', '#889CA2'];
+  for (let i = 0; i < 60; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = Math.random() * 2 + 's';
+    piece.style.animationDuration = (2 + Math.random() * 2) + 's';
+    const size = 6 + Math.random() * 10;
+    piece.style.width = size + 'px';
+    piece.style.height = size + 'px';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    container.appendChild(piece);
+  }
+  setTimeout(() => container.remove(), 5000);
+}
+
+// ===== CHECKLIST =====
+function toggleCheck(item) {
+  item.classList.toggle('checked');
+  saveChecklistState(currentLesson);
+  persist();
+  // Auto-complete lesson when all checklist items are checked
+  checkAutoComplete(currentLesson);
+}
+
+function checkAutoComplete(lessonNum) {
+  if (completedLessons.has(lessonNum)) return;
+  const lesson = document.getElementById('lesson' + lessonNum);
+  if (!lesson) return;
+  const items = lesson.querySelectorAll('.checklist-item');
+  if (items.length === 0) return; // Lesson 1 has no checklist — skip
+  const allChecked = Array.from(items).every(item => item.classList.contains('checked'));
+  if (allChecked) {
+    // Small delay so they see the last check animate before the complete fires
+    setTimeout(() => {
+      if (!completedLessons.has(lessonNum)) {
+        markComplete(lessonNum);
+      }
+    }, 600);
+  }
+}
+
+// ===== AUDIO (placeholder) =====
+function toggleAudio(n) {
+  alert('Audio coming soon! Scroll down for the written version.');
+}
+function cycleSpeed(btn) {
+  const speeds = ['1x', '1.25x', '1.5x', '2x'];
+  const current = speeds.indexOf(btn.textContent);
+  btn.textContent = speeds[(current + 1) % speeds.length];
+}
+
+// ===== MOBILE SIDEBAR =====
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('visible');
+}
+
+// ===== DEMO MODE =====
+(function() {
+  // Always show demo bar in iframe context (Claude preview)
+  let inClaude = false;
+  try { inClaude = (window.self !== window.top); } catch(e) { inClaude = true; }
+  if (!inClaude && !location.search.includes('demo')) return;
+
+  // Auto-login with demo email so everything works immediately
+  document.getElementById('loginEmail').value = 'demo@preview.com';
+  doLogin();
+
+  const bar = document.createElement('div');
+  bar.id = 'demoBar';
+  document.body.appendChild(bar);
+
+  const style = document.createElement('style');
+  style.textContent = `
+    #demoBar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--color-coral);padding:8px 12px;z-index:9999;display:flex;justify-content:center;}
+    #demoBar button{padding:5px 12px;border-radius:50px;border:none;color:#fff;font-family:'Quick',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:1.5px;cursor:pointer;transition:opacity 0.15s;}
+    #demoBar button:hover{opacity:0.8;}
+    #demoBar .db-yellow{background:var(--color-yellow);}
+    #demoBar .db-coral{background:var(--color-coral);}
+    #demoBar .db-blue{background:var(--color-primary);}
+    #demoBar .db-mint{background:var(--color-mist);color:var(--color-primary-dark);}
+    #demoBar .db-gray{background:#ccc;color:#666;}
+    #demoBar .db-sm{padding:4px 9px;font-size:8px;background:var(--color-mist);color:var(--color-primary-dark);}
+    body{padding-bottom:46px;}
+  `;
+  document.head.appendChild(style);
+
+  // Build buttons manually with addEventListener (avoids inline onclick issues in sandboxed iframes)
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'display:flex;align-items:center;gap:6px;flex-wrap:wrap;';
+
+  function makeBtn(label, cls, fn) {
+    const b = document.createElement('button');
+    b.textContent = label;
+    b.className = cls;
+    b.addEventListener('click', fn);
+    return b;
+  }
+  function makeSep() {
+    const s = document.createElement('span');
+    s.textContent = '|';
+    s.style.color = '#ddd';
+    return s;
+  }
+
+  const tag = document.createElement('span');
+  tag.textContent = 'DEMO';
+  tag.style.cssText = "font-family:'Quick',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--color-coral);";
+  wrap.appendChild(tag);
+
+  wrap.appendChild(makeBtn('Login', 'db-mint', function() {
+    document.getElementById('loginEmail').value = 'demo@preview.com';
+    doLogin();
+  }));
+  wrap.appendChild(makeBtn('All Done', 'db-yellow', function() {
+    for (let i = 1; i <= TOTAL_LESSONS; i++) {
+      completedLessons.add(i);
+      const btn = document.getElementById('completeBtn' + i);
+      if (btn) { btn.innerHTML = '&#10003; Completed!'; btn.classList.add('completed'); }
+    }
+    persist(); showCelebration();
+  }));
+  wrap.appendChild(makeBtn('Reset', 'db-gray', function() {
+    completedLessons = new Set(); currentLesson = 1; checklistState = {};
+    const key = storageKey(currentEmail);
+    try { localStorage.removeItem(key); } catch(e) {}
+    if (window.storage) { try { window.storage.delete(key, true); } catch(e) {} }
+    for (let i = 1; i <= TOTAL_LESSONS; i++) {
+      const btn = document.getElementById('completeBtn' + i);
+      if (btn) { btn.innerHTML = '&#10003; Mark Lesson Complete'; btn.classList.remove('completed'); btn.classList.remove('nudge-pulse'); }
+    }
+    document.querySelectorAll('.checklist-item').forEach(function(item) { item.classList.remove('checked'); });
+    resetNudge(); persist(); goLesson(1);
+  }));
+
+  wrap.appendChild(makeSep());
+
+  wrap.appendChild(makeBtn('Pulse', 'db-coral', function() {
+    var btn = document.getElementById('completeBtn' + currentLesson);
+    if (btn && !btn.classList.contains('completed')) btn.classList.add('nudge-pulse');
+    if (btn) btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }));
+  wrap.appendChild(makeBtn('Banner', 'db-coral', function() {
+    showNudgeBanner();
+  }));
+  wrap.appendChild(makeBtn('Both', 'db-blue', function() {
+    var btn = document.getElementById('completeBtn' + currentLesson);
+    if (btn && !btn.classList.contains('completed')) btn.classList.add('nudge-pulse');
+    if (btn) btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    showNudgeBanner();
+  }));
+  wrap.appendChild(makeBtn('Next Steps', 'db-yellow', function() {
+    for (var i = 1; i <= TOTAL_LESSONS; i++) {
+      completedLessons.add(i);
+      var btn = document.getElementById('completeBtn' + i);
+      if (btn) { btn.innerHTML = '\u2713 Completed!'; btn.classList.add('completed'); }
+    }
+    persist(); goLesson('next'); renderSidebar(); fireConfetti();
+  }));
+
+  wrap.appendChild(makeSep());
+
+  // Lesson number buttons
+  for (var i = 1; i <= TOTAL_LESSONS; i++) {
+    (function(num) {
+      wrap.appendChild(makeBtn(String(num), 'db-sm', function() { goLesson(num); }));
+    })(i);
+  }
+
+  bar.appendChild(wrap);
+})();
+</script>
+</body>
+</html>
