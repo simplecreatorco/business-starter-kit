@@ -55,7 +55,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
 .login-welcome { font-family: 'Fraunces', serif; font-weight: 400; font-size: 16px; color: var(--color-primary); margin-bottom: 16px; }
 
 /* ===== APP LAYOUT ===== */
-.app-wrap { display: none; height: 100vh; }
+.app-wrap { display: none; height: 100vh; height: 100dvh; }
 .app-wrap.visible { display: flex; }
 
 /* ===== SIDEBAR ===== */
@@ -372,25 +372,85 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
   .mobile-header {
     display: flex; align-items: center; gap: 12px; padding: 16px 20px;
     background: var(--color-surface); border-bottom: 1px solid #eee;
+    flex-shrink: 0;
   }
   .hamburger {
     width: 36px; height: 36px; border-radius: 8px; border: 2px solid #e8e8e8;
     background: none; cursor: pointer; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 4px;
+    align-items: center; justify-content: center; gap: 4px; flex-shrink: 0;
   }
   .hamburger span { width: 18px; height: 2px; background: var(--color-primary); border-radius: 2px; }
   .mobile-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: 16px; text-transform: uppercase; color: var(--color-primary); letter-spacing: -0.5px; }
   .mobile-progress { margin-left: auto; font-size: 12px; color: var(--color-body-light); font-weight: 700; }
-  .lesson-content { padding: 32px 24px 80px; }
-  .nudge-banner { padding: 12px 16px; gap: 10px; }
+  .lesson-content { padding: 28px 20px 80px; }
+  .nudge-banner { padding: 12px 16px; gap: 10px; flex-wrap: wrap; }
   .nudge-text { font-size: 13px; }
+  .lesson-nav { flex-wrap: wrap; gap: 10px; }
+  .nav-btn { font-size: 10px; padding: 12px 20px; letter-spacing: 2px; }
 }
 
-@media (max-width: 500px) {
-  .lesson-content { padding: 24px 16px 60px; }
-  .content-card { padding: 20px 16px; }
+@media (max-width: 600px) {
+  .app-wrap.visible { height: 100vh; height: 100dvh; overflow: hidden; }
+  .main-area { -webkit-overflow-scrolling: touch; }
+  .lesson-content { padding: 20px 16px 80px; }
+  .content-card { padding: 20px 16px; border-radius: 12px; }
+  .content-card h3 { font-size: 18px; }
+  .content-card p { font-size: 14px; line-height: 1.7; }
+  .content-card ul { font-size: 14px; line-height: 1.7; margin-left: 16px; }
   .resource-grid { grid-template-columns: 1fr; }
-  .audio-player { padding: 14px 16px; }
+  .audio-player { padding: 14px 16px; border-radius: 12px; }
+  .audio-player-bar { gap: 8px; }
+  .play-btn { width: 36px; height: 36px; font-size: 12px; }
+  .lesson-tag { font-size: 10px; letter-spacing: 2px; }
+  .lesson-title { font-size: clamp(22px, 6vw, 28px); margin-bottom: 6px; }
+  .lesson-desc { font-size: 14px; margin-bottom: 20px; }
+  .tip-box { padding: 14px 16px; font-size: 13px; border-radius: 10px; }
+  .checklist-item { padding: 12px 0; gap: 10px; }
+  .check-box { width: 22px; height: 22px; border-radius: 5px; }
+  .check-label { font-size: 14px; line-height: 1.5; }
+  .mark-complete-btn { padding: 14px 28px; font-size: 11px; letter-spacing: 2px; }
+  .mark-complete-row { margin-top: 20px; }
+  /* Nav buttons — keep side by side, just smaller */
+  .lesson-nav { margin-top: 24px; padding-top: 20px; }
+  .nav-btn { font-size: 9px; padding: 10px 14px; letter-spacing: 1.5px; }
+  .nav-spacer { display: none; }
+  .content-divider { font-size: 9px; letter-spacing: 2px; margin-bottom: 20px; }
+  .next-step-card { flex-direction: column; gap: 12px; padding: 20px 16px; border-radius: 12px; }
+  .next-step-number { width: 32px; height: 32px; font-size: 14px; }
+  .next-step-title { font-size: 18px; }
+  .next-step-desc { font-size: 13px; }
+  .next-step-btn { font-size: 9px; padding: 9px 18px; letter-spacing: 2px; }
+  .next-section-title { font-size: clamp(24px, 6vw, 32px); }
+  .next-section-desc { font-size: 14px; }
+  .celeb-emoji { font-size: 48px; }
+  .celeb-title { font-size: 26px; }
+  .celeb-text { font-size: 14px; }
+  .celebration-header { padding: 8px 0 4px; }
+  .nudge-banner { bottom: 0; padding: 12px 12px; gap: 8px; }
+  .nudge-text { font-size: 12px; flex: 1; min-width: 0; }
+  .nudge-btn { padding: 8px 16px; font-size: 9px; letter-spacing: 1.5px; }
+  .save-toast { bottom: 12px; right: 12px; font-size: 9px; padding: 8px 16px; }
+  .login-card { padding: 32px 24px; border-radius: 16px; }
+  .login-title { font-size: clamp(24px, 7vw, 36px); }
+  .login-desc { font-size: 13px; margin-bottom: 20px; }
+  .login-input { padding: 12px 16px; font-size: 14px; }
+  .login-btn { padding: 14px; font-size: 11px; letter-spacing: 2px; }
+  .resource-card { padding: 14px 16px !important; }
+  .resource-name { font-size: 9px; }
+  .resource-desc { font-size: 11px; }
+  #lessonNextLocked > div { padding: 40px 16px !important; }
+}
+
+@media (max-width: 380px) {
+  .lesson-content { padding: 16px 12px 80px; }
+  .content-card { padding: 16px 12px; }
+  .content-card h3 { font-size: 17px; }
+  .lesson-title { font-size: 22px; }
+  .nav-btn { padding: 10px 14px; font-size: 9px; }
+  .mark-complete-btn { padding: 12px 20px; font-size: 10px; letter-spacing: 1.5px; }
+  .mobile-header { padding: 12px 14px; }
+  .mobile-title { font-size: 14px; }
+  .login-card { padding: 24px 16px; }
 }
 </style>
 </head>
@@ -1289,7 +1349,7 @@ const nudgeMessages = [
 // window.storage is the cross-device sync layer (persistent storage API)
 // localStorage is the fast local cache
 function storageKey(email) {
-  return KEY_PREFIX + email.replace(/[^a-z0-9@._\-]/g, '');
+  return KEY_PREFIX + email.replace(/[@]/g, '_at_').replace(/[.]/g, '_').replace(/[^a-z0-9_\-]/g, '');
 }
 
 function buildSaveData() {
@@ -1307,7 +1367,7 @@ async function persist() {
   const data = buildSaveData();
   // Always write to both — window.storage is the sync source, localStorage is fast cache
   if (window.storage) {
-    try { await window.storage.set(key, data, true); } catch(e) { console.log('storage.set failed:', e); }
+    try { await window.storage.set(key, data); } catch(e) { console.log('storage.set failed:', e); }
   }
   try { localStorage.setItem(key, data); } catch(e) {}
 }
@@ -1318,7 +1378,7 @@ async function loadData(email) {
   // Try window.storage FIRST (cross-device sync source of truth)
   if (window.storage) {
     try {
-      const result = await window.storage.get(key, true);
+      const result = await window.storage.get(key);
       if (result && result.value) {
         data = JSON.parse(result.value);
         // Also update localStorage cache so it's fresh
@@ -1689,9 +1749,9 @@ function toggleSidebar() {
   document.getElementById('sidebarOverlay').classList.toggle('visible');
 }
 
-// ===== DEMO MODE =====
+// ===== DEMO MODE (disabled for testing) =====
 (function() {
-  // Always show demo bar in iframe context (Claude preview)
+  return; // Skip demo mode entirely
   let inClaude = false;
   try { inClaude = (window.self !== window.top); } catch(e) { inClaude = true; }
   if (!inClaude && !location.search.includes('demo')) return;
@@ -1758,7 +1818,7 @@ function toggleSidebar() {
     completedLessons = new Set(); currentLesson = 1; checklistState = {};
     const key = storageKey(currentEmail);
     try { localStorage.removeItem(key); } catch(e) {}
-    if (window.storage) { try { window.storage.delete(key, true); } catch(e) {} }
+    if (window.storage) { try { window.storage.delete(key); } catch(e) {} }
     for (let i = 1; i <= TOTAL_LESSONS; i++) {
       const btn = document.getElementById('completeBtn' + i);
       if (btn) { btn.innerHTML = '&#10003; Mark Lesson Complete'; btn.classList.remove('completed'); btn.classList.remove('nudge-pulse'); }
