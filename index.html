@@ -25,7 +25,8 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: var(--color-body-text); line-height: 1.75; min-height: 100vh; }
+body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: var(--color-body-text); line-height: 1.75; min-height: 100vh; -webkit-text-size-adjust: 100%; }
+a, button { -webkit-tap-highlight-color: transparent; }
 
 /* ===== LOGIN ===== */
 .login-screen {
@@ -41,7 +42,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
 .login-desc { font-size: 14px; color: var(--color-body-text); max-width: 340px; margin: 0 auto 28px; }
 .login-input {
   width: 100%; border: 2px solid #e8e8e8; border-radius: 50px; padding: 14px 20px;
-  font-family: 'Nunito', sans-serif; font-size: 15px; color: var(--color-body-text);
+  font-family: 'Nunito', sans-serif; font-size: 16px; color: var(--color-body-text);
   text-align: center; transition: border-color 0.2s; background: #fafafa;
 }
 .login-input:focus { outline: none; border-color: var(--color-primary); background: #fff; }
@@ -180,7 +181,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
   font-family: 'Quick', sans-serif; font-size: 9px; text-transform: uppercase; letter-spacing: 2px;
   color: var(--color-primary); background: var(--color-surface); border: 1.5px solid #e0e0e0;
   padding: 5px 14px; border-radius: 50px; cursor: pointer; transition: all 0.15s;
-  position: sticky; top: 0; float: right; margin: -4px 0 8px 12px; z-index: 2;
+  display: block; margin: 0 auto 14px 0;
 }
 .transcript-copy:hover { border-color: var(--color-primary); background: var(--color-primary); color: #fff; }
 
@@ -296,7 +297,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
 
 /* ===== NUDGE BANNER ===== */
 .nudge-banner {
-  position: fixed; bottom: 46px; left: 0; right: 0; z-index: 100;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
   background: var(--color-surface); border-top: 2px solid var(--color-primary-light);
   padding: 14px 24px; display: flex; align-items: center; justify-content: center; gap: 16px;
   opacity: 0; transform: translateY(100%); transition: all 0.4s ease;
@@ -421,6 +422,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
 */
 @media (max-width: 1100px) {
   .app-wrap.visible { flex-direction: column; }
+  .app-wrap { height: 100dvh; }
   .sidebar {
     position: fixed; left: -100%; top: 0; bottom: 0; z-index: 400;
     width: 85%; max-width: 320px; transition: left 0.3s ease;
@@ -449,10 +451,74 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
 }
 
 @media (max-width: 500px) {
-  .lesson-content { padding: 24px 16px 60px; }
+  /* Layout */
+  .lesson-content { padding: 20px 16px 60px; }
   .content-card { padding: 20px 16px; }
-  .resource-grid { grid-template-columns: 1fr; }
   .audio-player { padding: 14px 16px; }
+
+  /* Login */
+  .login-card { padding: 36px 24px; }
+  .login-title { font-size: 28px; }
+
+  /* Lesson header */
+  .lesson-title { font-size: 24px; }
+  .lesson-desc { font-size: 14px; }
+
+  /* Resource grids stack */
+  .resource-grid { grid-template-columns: 1fr; }
+
+  /* Resource CTA card stacks vertically */
+  .resource-cta-card { flex-direction: column; align-items: flex-start; padding: 20px; gap: 14px; }
+  .resource-cta-btn { width: 100%; justify-content: center; }
+
+  /* Next step cards */
+  .next-step-card { padding: 20px; gap: 14px; }
+  .next-step-number { width: 32px; height: 32px; font-size: 14px; }
+  .next-step-title { font-size: 18px; }
+  .next-step-desc { font-size: 13px; }
+  .next-step-btn { width: 100%; justify-content: center; }
+
+  /* Next section header */
+  .next-section-title { font-size: 28px; }
+
+  /* Celebration */
+  .celeb-title { font-size: 28px; }
+  .celeb-emoji { font-size: 48px; }
+  .celeb-text { font-size: 14px; }
+
+  /* Nav buttons */
+  .lesson-nav { gap: 8px; }
+  .nav-btn { padding: 12px 18px; font-size: 10px; letter-spacing: 2px; }
+
+  /* Mark complete */
+  .mark-complete-btn { padding: 14px 28px; font-size: 11px; letter-spacing: 2px; width: 100%; justify-content: center; }
+
+  /* Checklists */
+  .checklist-header { padding: 16px 20px 10px; font-size: 18px; }
+  .checklist { padding: 4px 20px 16px; }
+  .check-label { font-size: 14px; }
+
+  /* Tip box */
+  .tip-box { padding: 14px 16px; font-size: 13px; }
+
+  /* Transcript */
+  .transcript-content { padding: 16px; font-size: 13px; max-height: 250px; }
+
+  /* Nudge banner */
+  .nudge-banner { flex-wrap: wrap; justify-content: center; padding: 12px 16px; gap: 8px; }
+  .nudge-text { font-size: 12px; text-align: center; width: 100%; }
+  .nudge-btn { width: 100%; text-align: center; }
+
+  /* Content divider */
+  .content-divider { font-size: 9px; letter-spacing: 2px; }
+
+  /* Audio player */
+  .play-btn { width: 38px; height: 38px; font-size: 13px; }
+  .audio-player-bar { gap: 10px; }
+  .audio-time { font-size: 10px; }
+
+  /* Locked page */
+  #lessonNextLocked .lesson-title { font-size: 22px; }
 }
 </style>
 </head>
@@ -647,7 +713,16 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
             <li>Say it out loud 10 times. Does it feel good?</li>
           </ul>
         </div>
-        <div class="tip-box">&#128161; <strong>Already have the Brand Detective?</strong> Use your Brand Name Brainstorm prompt to get AI-generated name ideas based on your story and audience. If you don't have it yet, you can grab it later.</div>
+        <div class="tip-box">&#128161; <strong>Already have the Brand Detective?</strong> Use your Brand Name Brainstorm prompt to get AI-generated name ideas based on your story and audience.</div>
+
+        <div class="resource-cta-card">
+          <div class="resource-cta-icon">&#128270;</div>
+          <div class="resource-cta-text">
+            <div class="resource-cta-title">Brand Detective</div>
+            <div class="resource-cta-desc">Don't have it yet? The Brand Detective walks you through your brand identity and generates AI prompts to brainstorm names based on your story and audience.</div>
+          </div>
+          <a class="resource-cta-btn" href="https://simplecreator.samcart.com/products/the-brand-detective-bsk?utm_source=bsk&utm_medium=dashboard&utm_campaign=business-starter-kit&utm_content=lesson-2-brand-detective" target="_blank">Grab the Brand Detective &#8594;</a>
+        </div>
 
         <div class="content-card">
           <h3>Register Your Domain</h3>
@@ -958,7 +1033,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
           <p>Quick walkthrough of how to set up and use your bookkeeping spreadsheet.</p>
           <div class="video-player">
             <video controls playsinline preload="metadata" style="width:100%; border-radius:12px; background:#000;">
-              <source src="https://simplecreatorco.github.io/business-starter-kit/bookkeeping-walkthrough.mp4" type="video/mp4">
+              <source src="./bookkeeping-walkthrough.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -1058,7 +1133,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
         </div>
         <div class="content-card">
           <h3>Recommended Platform</h3>
-          <p>I recommend <a href="https://account.showit.co/r/p142hh1l" target="_blank" style="color:var(--color-primary);font-weight:700;">Showit</a>. It's what I've used for years. Drag-and-drop, gorgeous templates, very user-friendly. They have free templates to get started so you don't need to pay for a custom design right away. Just swap in your own photos and words and you're good to go.</p>
+          <p>I recommend <a href="https://account.showit.co/r/p142hh1l?utm_source=bsk&utm_medium=dashboard&utm_campaign=business-starter-kit&utm_content=lesson-6-showit" target="_blank" style="color:var(--color-primary);font-weight:700;">Showit</a>. It's what I've used for years. Drag-and-drop, gorgeous templates, very user-friendly. They have free templates to get started so you don't need to pay for a custom design right away. Just swap in your own photos and words and you're good to go.</p>
           <p style="font-size:11px; color:var(--color-body-light); margin-top:8px; line-height:1.5;">This is an affiliate link. You'll get your first month free and I may earn a small commission at no extra cost to you.</p>
         </div>
         <div class="resource-cta-card">
@@ -1067,9 +1142,9 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
             <div class="resource-cta-title">Showit</div>
             <div class="resource-cta-desc">Get your first month free. Drag-and-drop website builder with beautiful free templates.</div>
           </div>
-          <a class="resource-cta-btn" href="https://account.showit.co/r/p142hh1l" target="_blank">Try Showit Free &#8594;</a>
+          <a class="resource-cta-btn" href="https://account.showit.co/r/p142hh1l?utm_source=bsk&utm_medium=dashboard&utm_campaign=business-starter-kit&utm_content=lesson-6-showit-card" target="_blank">Try Showit Free &#8594;</a>
         </div>
-        <div class="tip-box">&#128161; <strong>Don't know what to write on your website?</strong> That's exactly what the Copy Detective is for. It walks you through your messaging and generates AI-powered copy for every page. Grab it if you haven't already.</div>
+        <div class="tip-box">&#128161; <strong>Don't know what to write on your website?</strong> That's exactly what the Brand Detective is for. It walks you through your brand identity and messaging, then generates AI-powered copy for every page of your website. <a href="https://simplecreator.samcart.com/products/the-brand-detective-bsk?utm_source=bsk&utm_medium=dashboard&utm_campaign=business-starter-kit&utm_content=lesson-6-brand-detective-tip" target="_blank" style="color:var(--color-primary);font-weight:700;">Grab it here</a> if you haven't already.</div>
 
         <div class="resource-cta-card">
           <div class="resource-cta-icon">&#128218;</div>
@@ -1077,7 +1152,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
             <div class="resource-cta-title">6-Figure Branding Hacks</div>
             <div class="resource-cta-desc">The exact tools and shortcuts I used to build an entire brand in 24 hours that went on to hit six figures in 10 months. Coolors, Canva, Pinterest mood boarding, AI — all in one guide.</div>
           </div>
-          <a class="resource-cta-btn" href="https://simplecreator.mysamcart.com/checkout/6-figure-branding" target="_blank">Get the Guide &#8594;</a>
+          <a class="resource-cta-btn" href="https://simplecreator.mysamcart.com/checkout/6-figure-branding?utm_source=bsk&utm_medium=dashboard&utm_campaign=business-starter-kit&utm_content=lesson-6-branding-hacks" target="_blank">Get the Guide &#8594;</a>
         </div>
 
         <div class="checklist-header">&#9745; Your Checklist</div>
@@ -1361,7 +1436,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
             <div class="next-step-tag">Recommended Next</div>
             <div class="next-step-title">Brand Detective</div>
             <div class="next-step-desc">Figure out your brand identity and messaging using AI. You'll walk away with your brand name direction, color palette, voice guide, and website copy — all generated from your own words and story.</div>
-            <a class="next-step-btn" href="https://simplecreator.samcart.com/products/the-brand-detective-bsk" target="_blank">Grab the Brand Detective &#8594;</a>
+            <a class="next-step-btn" href="https://simplecreator.samcart.com/products/the-brand-detective-bsk?utm_source=bsk&utm_medium=dashboard&utm_campaign=business-starter-kit&utm_content=whats-next-brand-detective" target="_blank">Grab the Brand Detective &#8594;</a>
           </div>
         </div>
 
@@ -1371,7 +1446,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
             <div class="next-step-tag">Get Found</div>
             <div class="next-step-title">Instagram Passive Sales System</div>
             <div class="next-step-desc">Stop posting into the void. Learn the system that lets Instagram work for you — without posting every single day. A $5/day strategy that changes everything.</div>
-            <a class="next-step-btn" href="https://simplecreator.samcart.com/products/ipss-organic" target="_blank">Check Out IPSS &#8594;</a>
+            <a class="next-step-btn" href="https://simplecreator.samcart.com/products/ipss-organic?utm_source=bsk&utm_medium=dashboard&utm_campaign=business-starter-kit&utm_content=whats-next-ipss" target="_blank">Check Out IPSS &#8594;</a>
           </div>
         </div>
 
@@ -1381,7 +1456,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
             <div class="next-step-tag">Level Up</div>
             <div class="next-step-title">Want More Support?</div>
             <div class="next-step-desc">The SCC student community is where you can connect with other women building businesses just like yours. Share wins, ask questions, get feedback, and never feel like you're figuring this out alone.</div>
-            <a class="next-step-btn" href="https://simplecreator.samcart.com/products/coaching-community-sidebar" target="_blank">Learn About the Community &#8594;</a>
+            <a class="next-step-btn" href="https://simplecreator.samcart.com/products/coaching-community-sidebar?utm_source=bsk&utm_medium=dashboard&utm_campaign=business-starter-kit&utm_content=whats-next-community" target="_blank">Learn About the Community &#8594;</a>
           </div>
         </div>
 
@@ -1450,7 +1525,11 @@ const nudgeMessages = [
 // window.storage is the cross-device sync layer (persistent storage API)
 // localStorage is the fast local cache
 function storageKey(email) {
-  return KEY_PREFIX + email.replace(/[^a-z0-9@._\-]/g, '');
+  // window.storage keys can't contain @ or . — sanitize like Brand Detective does
+  return KEY_PREFIX + email
+    .replace(/@/g, '_at_')
+    .replace(/\./g, '_')
+    .replace(/[^a-z0-9_\-]/g, '');
 }
 
 function buildSaveData() {
@@ -1683,7 +1762,10 @@ function goLesson(n) {
 
   // Reset nudge state for new lesson
   resetNudge();
-  if (typeof n === 'number') startNudgeTimer();
+  if (typeof n === 'number') {
+    startNudgeTimer();
+    preloadDuration(n);
+  }
 }
 
 // ===== MARK COMPLETE =====
@@ -1845,7 +1927,7 @@ function checkAutoComplete(lessonNum) {
 }
 
 // ===== AUDIO PLAYER =====
-const AUDIO_BASE = 'https://simplecreatorco.github.io/business-starter-kit/';
+const AUDIO_BASE = './';  // relative — works on starterkit.thesimplecreator.com and github.io
 const audioFiles = {
   1: 'lesson-1.m4a',
   2: 'lesson-2.m4a',
@@ -1859,6 +1941,26 @@ const audioFiles = {
 
 let currentAudioLesson = null;
 let audioElement = null;
+let preloadedDurations = {};
+
+function preloadDuration(n) {
+  if (preloadedDurations[n]) {
+    // Already have it, just display
+    var els = getPlayerEls(n);
+    if (els) els.timeEl.textContent = '0:00 / ' + formatTime(preloadedDurations[n]);
+    return;
+  }
+  var temp = new Audio();
+  temp.preload = 'metadata';
+  temp.src = AUDIO_BASE + audioFiles[n];
+  temp.addEventListener('loadedmetadata', function() {
+    preloadedDurations[n] = temp.duration;
+    var els = getPlayerEls(n);
+    if (els && currentAudioLesson !== n) {
+      els.timeEl.textContent = '0:00 / ' + formatTime(temp.duration);
+    }
+  });
+}
 
 function getPlayerEls(n) {
   const lesson = document.getElementById('lesson' + n);
@@ -1995,6 +2097,7 @@ function copyTranscript(n) {
     #demoBar .db-gray{background:#ccc;color:#666;}
     #demoBar .db-sm{padding:4px 9px;font-size:8px;background:var(--color-mist);color:var(--color-primary-dark);}
     body{padding-bottom:46px;}
+    .nudge-banner{bottom:46px !important;}
   `;
   document.head.appendChild(style);
 
