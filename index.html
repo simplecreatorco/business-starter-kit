@@ -55,7 +55,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
 .login-welcome { font-family: 'Fraunces', serif; font-weight: 400; font-size: 16px; color: var(--color-primary); margin-bottom: 16px; }
 
 /* ===== APP LAYOUT ===== */
-.app-wrap { display: none; height: 100vh; height: 100dvh; }
+.app-wrap { display: none; height: 100vh; }
 .app-wrap.visible { display: flex; }
 
 /* ===== SIDEBAR ===== */
@@ -155,8 +155,48 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
 .content-card ul { margin: 0 0 12px 20px; font-size: 15px; line-height: 1.75; }
 .content-card li { margin-bottom: 4px; }
 
+
+/* Transcript */
+.transcript-row {
+  display: flex; align-items: center; gap: 10px; margin-top: 10px; padding-top: 8px; border-top: 1px solid #f0f0f0;
+}
+.transcript-btn {
+  font-family: 'Quick', sans-serif; font-size: 9px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--color-body-light); background: none; border: 1.5px solid #e0e0e0;
+  padding: 6px 16px; border-radius: 50px; cursor: pointer; transition: all 0.15s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.transcript-btn:hover { border-color: var(--color-primary-light); color: var(--color-primary); }
+.transcript-btn.open { border-color: var(--color-primary); color: var(--color-primary); }
+.transcript-content {
+  display: none; margin-top: 12px; padding: 20px 24px; background: var(--color-bg);
+  border-radius: 12px; font-size: 14px; line-height: 1.8; color: var(--color-body-text);
+  max-height: 300px; overflow-y: auto; position: relative;
+}
+.transcript-content.visible { display: block; animation: fadeUp 0.3s ease; }
+.transcript-content p { margin-bottom: 12px; }
+.transcript-content p:last-child { margin-bottom: 0; }
+.transcript-copy {
+  font-family: 'Quick', sans-serif; font-size: 9px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--color-primary); background: var(--color-surface); border: 1.5px solid #e0e0e0;
+  padding: 5px 14px; border-radius: 50px; cursor: pointer; transition: all 0.15s;
+  position: sticky; top: 0; float: right; margin: -4px 0 8px 12px; z-index: 2;
+}
+.transcript-copy:hover { border-color: var(--color-primary); background: var(--color-primary); color: #fff; }
+
 /* Checklist */
-.checklist { margin-top: 20px; }
+.checklist-header {
+  display: flex; align-items: center; gap: 10px; margin-top: 28px; margin-bottom: 0;
+  padding: 20px 28px 14px; border-top: 2px solid #eee;
+  font-family: 'Fraunces', serif; font-weight: 400; font-size: 20px;
+  color: var(--color-primary);
+  background: var(--color-surface); border-radius: 16px 16px 0 0; border-left: 1px solid #eee; border-right: 1px solid #eee;
+}
+.checklist {
+  margin-top: 0; padding: 8px 28px 20px;
+  background: var(--color-surface); border-radius: 0 0 16px 16px;
+  border: 1px solid #eee; border-top: none;
+}
 .checklist-item {
   display: flex; align-items: flex-start; gap: 12px; padding: 14px 0;
   border-bottom: 1px solid #f0f0f0; cursor: pointer; user-select: none;
@@ -169,7 +209,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
   font-size: 14px; color: transparent;
 }
 .checklist-item.checked .check-box {
-  background: #6BA889; border-color: #6BA889; color: #fff;
+  background: var(--color-sage); border-color: var(--color-sage); color: #fff;
 }
 .check-label { font-size: 15px; color: var(--color-body-text); line-height: 1.5; }
 .checklist-item.checked .check-label { color: var(--color-body-light); text-decoration: line-through; }
@@ -181,6 +221,28 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
   border: 1.5px solid var(--color-blush);
 }
 .tip-box strong { color: var(--color-primary); }
+
+/* Resource CTA card */
+.resource-cta-card {
+  background: var(--color-surface); border-radius: 16px; padding: 24px 28px;
+  margin-bottom: 16px; border: 1px solid #eee; display: flex;
+  align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.resource-cta-icon { font-size: 32px; flex-shrink: 0; }
+.resource-cta-text { flex: 1; min-width: 180px; }
+.resource-cta-title {
+  font-family: 'Fraunces', serif; font-weight: 400; font-size: 18px;
+  color: var(--color-primary); margin-bottom: 4px;
+}
+.resource-cta-desc { font-size: 13px; color: var(--color-body-text); line-height: 1.5; }
+.resource-cta-btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 12px 28px;
+  border-radius: 50px; background: var(--color-yellow); color: #fff;
+  font-family: 'Quick', sans-serif; font-size: 10px; text-transform: uppercase;
+  letter-spacing: 2.5px; border: none; cursor: pointer; transition: opacity 0.15s;
+  text-decoration: none; flex-shrink: 0; white-space: nowrap;
+}
+.resource-cta-btn:hover { opacity: 0.85; }
 
 /* Resource links */
 .resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
@@ -372,85 +434,25 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
   .mobile-header {
     display: flex; align-items: center; gap: 12px; padding: 16px 20px;
     background: var(--color-surface); border-bottom: 1px solid #eee;
-    flex-shrink: 0;
   }
   .hamburger {
     width: 36px; height: 36px; border-radius: 8px; border: 2px solid #e8e8e8;
     background: none; cursor: pointer; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 4px; flex-shrink: 0;
+    align-items: center; justify-content: center; gap: 4px;
   }
   .hamburger span { width: 18px; height: 2px; background: var(--color-primary); border-radius: 2px; }
   .mobile-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: 16px; text-transform: uppercase; color: var(--color-primary); letter-spacing: -0.5px; }
   .mobile-progress { margin-left: auto; font-size: 12px; color: var(--color-body-light); font-weight: 700; }
-  .lesson-content { padding: 28px 20px 80px; }
-  .nudge-banner { padding: 12px 16px; gap: 10px; flex-wrap: wrap; }
+  .lesson-content { padding: 32px 24px 80px; }
+  .nudge-banner { padding: 12px 16px; gap: 10px; }
   .nudge-text { font-size: 13px; }
-  .lesson-nav { flex-wrap: wrap; gap: 10px; }
-  .nav-btn { font-size: 10px; padding: 12px 20px; letter-spacing: 2px; }
 }
 
-@media (max-width: 600px) {
-  .app-wrap.visible { height: 100vh; height: 100dvh; overflow: hidden; }
-  .main-area { -webkit-overflow-scrolling: touch; }
-  .lesson-content { padding: 20px 16px 80px; }
-  .content-card { padding: 20px 16px; border-radius: 12px; }
-  .content-card h3 { font-size: 18px; }
-  .content-card p { font-size: 14px; line-height: 1.7; }
-  .content-card ul { font-size: 14px; line-height: 1.7; margin-left: 16px; }
+@media (max-width: 500px) {
+  .lesson-content { padding: 24px 16px 60px; }
+  .content-card { padding: 20px 16px; }
   .resource-grid { grid-template-columns: 1fr; }
-  .audio-player { padding: 14px 16px; border-radius: 12px; }
-  .audio-player-bar { gap: 8px; }
-  .play-btn { width: 36px; height: 36px; font-size: 12px; }
-  .lesson-tag { font-size: 10px; letter-spacing: 2px; }
-  .lesson-title { font-size: clamp(22px, 6vw, 28px); margin-bottom: 6px; }
-  .lesson-desc { font-size: 14px; margin-bottom: 20px; }
-  .tip-box { padding: 14px 16px; font-size: 13px; border-radius: 10px; }
-  .checklist-item { padding: 12px 0; gap: 10px; }
-  .check-box { width: 22px; height: 22px; border-radius: 5px; }
-  .check-label { font-size: 14px; line-height: 1.5; }
-  .mark-complete-btn { padding: 14px 28px; font-size: 11px; letter-spacing: 2px; }
-  .mark-complete-row { margin-top: 20px; }
-  /* Nav buttons — keep side by side, just smaller */
-  .lesson-nav { margin-top: 24px; padding-top: 20px; }
-  .nav-btn { font-size: 9px; padding: 10px 14px; letter-spacing: 1.5px; }
-  .nav-spacer { display: none; }
-  .content-divider { font-size: 9px; letter-spacing: 2px; margin-bottom: 20px; }
-  .next-step-card { flex-direction: column; gap: 12px; padding: 20px 16px; border-radius: 12px; }
-  .next-step-number { width: 32px; height: 32px; font-size: 14px; }
-  .next-step-title { font-size: 18px; }
-  .next-step-desc { font-size: 13px; }
-  .next-step-btn { font-size: 9px; padding: 9px 18px; letter-spacing: 2px; }
-  .next-section-title { font-size: clamp(24px, 6vw, 32px); }
-  .next-section-desc { font-size: 14px; }
-  .celeb-emoji { font-size: 48px; }
-  .celeb-title { font-size: 26px; }
-  .celeb-text { font-size: 14px; }
-  .celebration-header { padding: 8px 0 4px; }
-  .nudge-banner { bottom: 0; padding: 12px 12px; gap: 8px; }
-  .nudge-text { font-size: 12px; flex: 1; min-width: 0; }
-  .nudge-btn { padding: 8px 16px; font-size: 9px; letter-spacing: 1.5px; }
-  .save-toast { bottom: 12px; right: 12px; font-size: 9px; padding: 8px 16px; }
-  .login-card { padding: 32px 24px; border-radius: 16px; }
-  .login-title { font-size: clamp(24px, 7vw, 36px); }
-  .login-desc { font-size: 13px; margin-bottom: 20px; }
-  .login-input { padding: 12px 16px; font-size: 16px; }
-  .login-btn { padding: 14px; font-size: 11px; letter-spacing: 2px; }
-  .resource-card { padding: 14px 16px !important; }
-  .resource-name { font-size: 9px; }
-  .resource-desc { font-size: 11px; }
-  #lessonNextLocked > div { padding: 40px 16px !important; }
-}
-
-@media (max-width: 380px) {
-  .lesson-content { padding: 16px 12px 80px; }
-  .content-card { padding: 16px 12px; }
-  .content-card h3 { font-size: 17px; }
-  .lesson-title { font-size: 22px; }
-  .nav-btn { padding: 10px 14px; font-size: 9px; }
-  .mark-complete-btn { padding: 12px 20px; font-size: 10px; letter-spacing: 1.5px; }
-  .mobile-header { padding: 12px 14px; }
-  .mobile-title { font-size: 14px; }
-  .login-card { padding: 24px 16px; }
+  .audio-player { padding: 14px 16px; }
 }
 </style>
 </head>
@@ -461,7 +463,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
   <div class="login-card">
     <div class="login-sub">Simple Creator Co.</div>
     <div class="login-title">Business Starter Kit</div>
-    <div class="login-desc">Your 8-lesson playbook to set up a real business. By the end, you'll have a solid foundation. No guesswork.</div>
+    <div class="login-desc">Your 8-lesson playbook to set up a real business. By the end, you'll have a solid foundation — no guesswork.</div>
     <div class="login-welcome" id="loginWelcome" style="display:none;"></div>
     <input type="email" class="login-input" id="loginEmail" placeholder="Your email address" onkeydown="if(event.key==='Enter')doLogin()">
     <button class="login-btn" id="loginBtn" onclick="doLogin()">Let's Do This &#8594;</button>
@@ -518,44 +520,60 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
           </div>
           <button class="audio-speed" onclick="cycleSpeed(this)">1x</button>
         </div>
+        <div class="transcript-row">
+          <button class="transcript-btn" onclick="toggleTranscript(1, this)">&#128196; Transcript</button>
+        </div>
+        <div class="transcript-content" id="transcript1"><button class="transcript-copy" onclick="copyTranscript(1)">Copy Transcript</button>
+<p>Hello friends, welcome to the Business Starter Kit. I am so, so glad you're here. And if you're inside this thing, that means you have already made a really big decision. You decided that this idea that you have, this thing that you're building, is worth taking seriously. And I just want to tell you most people really never get here.</p>
+
+<p>Most people sit in the "thinking about it" phase really forever. They save ideas on Pinterest. They watch what other people are doing. They tell themselves, okay, maybe I'll do it one day. But you are here. You are actually doing the thing, making it legit, and that matters.</p>
+
+<p>So before we get into all the steps and the checklists and the very practical things that we're going to cover, I want to talk about something that I think is super important. And that is that you are not starting a side hustle here. You are building a business. And it might be something that you do on the side, but it's a legit business. And I want you to say that out loud. I'm serious. Pause this and say it. I am building a business. Because the words that you use matter.</p>
+
+<p>When you tell people, "oh, I have this little side thing," they treat it like this little side thing. And when you say, "I'm building a business," they pay attention. And most importantly, you pay attention. The way that you show up completely changes when you start treating it like what it is.</p>
+
+<p>Let me give you a little bit of my story. My first digital product was $10. It was a Lightroom preset for mom photographers, and I made it during nap time on a random Tuesday. And the first time somebody bought it that day, I was sitting there and I just remember staring at my phone like, wait, somebody actually paid me for this. It was just so surreal. And that little $10 product helped build a business, really an empire, that made over $2,000,000 in sales. It didn't go viral. I didn't have this massive following. It just had a simple system behind it.</p>
+
+<p>And so that's exactly what we are doing for you right now. We are building the foundation of your system, the stuff that makes everything else work. Over the next 8 lessons, you're going to go from "I want to do this thing" to "I have a real legitimate business."</p>
+
+<p>By the time that you finish this kit, you'll have a business name, a registered domain, a professional email address, all of the legal stuff figured out. You'll have a bookkeeping system, a way for people to actually buy from you online, a workspace that feels like yours, and boundaries to help you keep going and make this thing sustainable.</p>
+
+<p>If you already have your digital product created, amazing. You are ready for all of this. If you don't have your digital product created yet, you're still in the right place to get your business legit. You're not disqualified. This is for anybody who is serious about wanting to make this a business.</p>
+
+<p>A couple things before we jump into the next lesson. This business starter kit is designed to be done in order. Each lesson builds on the one before it. You can go at your own pace. Some people may knock it out in a weekend. Some people might do a lesson here or there over a couple weeks. Either way is fine, but the key is to do them in order.</p>
+
+<p>You will see a mark as completed button at the bottom of each lesson. I want you to use that. There's just something about checking things off that builds momentum. Your progress tracker will fill up as you go. And when you've finished all the lessons, you get a little celebration.</p>
+
+<p>One more thing. You're going to have moments in here where you feel like you should already know this stuff. Like, how come I don't know how to register a business? Everyone else has this figured out but me. Stop right there. Nobody has this figured out. Everybody Googles it. Everybody asks a friend. Everybody stares at a screen wondering which button to click. The only difference here is you have someone walking you through every single step. And it's me.</p>
+
+<p>The next lesson is super easy and gives you a quick win, something you can check off the list. That is all about naming your business and getting your domain. So I will meet you over there.</p>
+        </div>
       </div>
 
       <div class="content-divider">Written Lesson</div>
 
       <div class="written-content">
         <div class="content-card">
-          <h3>You Already Made the Hard Decision</h3>
-          <p>If you're inside this kit, you've already done what most people never do. You decided your idea is worth taking seriously. Most people stay in the "thinking about it" phase forever. They save ideas on Pinterest, watch other people do it, tell themselves "one day." You're here. You're doing the thing.</p>
+          <h3>You're Not Just "Trying Something"</h3>
+          <p>If you're here, you've already made a decision that most people never make. You decided your idea is worth pursuing. That takes guts.</p>
+          <p>But here's the thing — a lot of people stay in "thinking about it" mode forever. They buy courses, save templates, pin ideas on Pinterest, but never actually set the thing up. This kit is here to fix that.</p>
+          <p>Over the next 8 lessons, you're going to go from "I think I want to do something" to "I have a legitimate business." Not in theory. For real.</p>
         </div>
-
         <div class="content-card">
-          <h3>Say It: "I Am Building a Business"</h3>
-          <p>You are not starting a side hustle. You are building a business. The words you use matter. When you tell people "oh, I have this little side thing," they treat it like a little side thing. When you say "I'm building a business," they pay attention. And more importantly, you pay attention.</p>
-          <p>My first digital product was $10. I made it during nap time. The first time somebody bought it, I was folding laundry and I just remember staring at my phone like, "Wait, someone actually paid me for this?" That $10 product has helped build a business with over $2 million in sales. Not because it went viral. Not because of a massive following. Because I put a simple system behind it. That's exactly what we're building for you right now.</p>
-        </div>
-
-        <div class="content-card">
-          <h3>What You'll Have When You Finish</h3>
-          <p>Over these 8 lessons, you're going from "I think I want to do something" to "I have a real, legitimate business." By the end, you will have:</p>
+          <h3>What You're Going to Walk Away With</h3>
+          <p>By the time you finish this kit, you will have:</p>
           <ul>
             <li>A business name and registered domain</li>
-            <li>A professional email address</li>
-            <li>Your legal stuff figured out</li>
-            <li>A bookkeeping system</li>
-            <li>A way for people to actually buy from you online</li>
-            <li>A workspace that feels like yours</li>
-            <li>Boundaries that keep this whole thing sustainable</li>
+            <li>A professional custom email</li>
+            <li>Your legal structure figured out (LLC vs sole proprietor)</li>
+            <li>A simple bookkeeping system you'll actually use</li>
+            <li>A basic web presence so people can find you</li>
+            <li>A designated workspace (even if it's your kitchen counter)</li>
+            <li>Boundaries that keep this sustainable</li>
           </ul>
+          <p>This isn't fluff. It's the actual foundation. And once it's set, you never have to worry about it again.</p>
         </div>
-
-        <div class="tip-box">&#128161; <strong>Don't have a digital product yet?</strong> If you're still in the "I don't know what to sell" phase, grab <strong>Made to Sell</strong> first. It walks you through creating your first digital product from scratch. This kit assumes you either have a product or you're actively building one.</div>
-
-        <div class="content-card">
-          <h3>How to Use This Kit</h3>
-          <p>Do the lessons in order. Each one builds on the one before it. Go at your own pace. Some people knock it out in a weekend, some do a lesson a day over a couple weeks. Both are fine.</p>
-          <p>Use the "Mark as Complete" button at the bottom of each lesson. Your progress tracker fills up as you go, and when you finish all 8, you get a little celebration. Because you've earned it.</p>
-          <p>And one more thing: you are going to have moments where you feel like you should already know this stuff. Stop. Nobody has this figured out. Everyone Googles it. Everyone asks a friend. The only difference is you have someone walking you through it step by step.</p>
-        </div>
+        <div class="tip-box">&#128161; <strong>Mindset shift:</strong> You are not "starting a side hustle." You are building a business. Say it out loud. The sooner you believe it, the sooner everyone else will too.</div>
       </div>
 
       <div class="mark-complete-row">
@@ -583,66 +601,81 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
           </div>
           <button class="audio-speed" onclick="cycleSpeed(this)">1x</button>
         </div>
+        <div class="transcript-row">
+          <button class="transcript-btn" onclick="toggleTranscript(2, this)">&#128196; Transcript</button>
+        </div>
+        <div class="transcript-content" id="transcript2"><button class="transcript-copy" onclick="copyTranscript(2)">Copy Transcript</button>
+<p>Okay, let's talk about your brand name. And I want to say something right off the bat. Your brand name does not have to be perfect. It just has to be yours.</p>
+
+<p>I've seen so many people get stuck on this step for weeks, literally weeks. They are in their notes app at 11 p.m. going back and forth between names. They ask all their friends, they're changing their mind every other day. And meanwhile, they are not building anything.</p>
+
+<p>Truthfully, your name matters, but not as much as you may think it does right now. It matters more that you actually start. You can always rebrand later if you need to. I've done that. I built an entire brand in 24 hours. I had a logo, a website, a CRM, every single piece. And that brand that I built in 24 hours hit 6 figures in 10 months. And the name was not this big drawn out decision. It was literally just what felt right in the moment and I went with it.</p>
+
+<p>So how do you come up with a brand name? If you have my Brand Detective tool, that would be the best place to start. The Brand Detective walks you through a bunch of questions about you, your personality, your business, your audience, and then it generates some AI prompts that help you brainstorm names. The names it comes up with are actually really good because they're based on your specific brand and not just random words.</p>
+
+<p>If you don't have the Brand Detective, no worries. I do have it linked for you. But you just need to think through a few things. What encompasses your brand well? If somebody heard your brand name, would they get a sense of what you do or who you serve? Is it something that people could potentially search for and find? And the biggest one: is it already taken?</p>
+
+<p>Once you have a name and you like it, you need to grab the domain. You're going to want to go to GoDaddy.com. It's super easy, it's cheap. You're going to search for your business name as a website.com. If it's available, grab it. Most domains are usually around $12 to $15 a year.</p>
+
+<p>If your exact name isn't available as a .com, you can try to add a few things. Add "the" in front of it. That's what I did because mine was Simple Creator Co, but that combination wasn't working. So my website is actually thesimplecreator.com. I made it work.</p>
+
+<p>Another thing you're going to want to search is Instagram handles. Look and see, does anybody else have your brand name? And I would also Google your brand name to see what comes up. Does somebody else already have a business like this? If it's in the same niche, you can't use it.</p>
+
+<p>Now, in GoDaddy, when you're checking out, they're going to try to sell you a bunch of add-ons. Website hosting, email packages, domain protection, upgrades. You don't need any of that right now. Just buy the domain. We will handle everything else separately.</p>
+
+<p>Once you have your domain, write it down somewhere where you're not going to lose it. Put it in the notes app on your phone or a sticky note on your desk. You're going to need that when we set up your email in lesson four.</p>
+
+<p>Below this audio, there is a written checklist that walks you through the GoDaddy step-by-step process. So if you feel stuck, follow those steps. You're going to want to come up with your business name, search the .com on GoDaddy, if it's available, register it. Skip any of the add-ons, and write down your domain name somewhere safe.</p>
+
+<p>And that's it. Once you do that, you own a piece of the internet. And that is really cool. You can do that today. There's nothing stopping you. If your day is busy, do it tomorrow. But don't put it off because this is such an easy win.</p>
+
+<p>In the next lesson, we're going to talk about how to make your business legal. I promise it's way less scary than it sounds. I'll meet you over there when you're done.</p>
+        </div>
       </div>
 
       <div class="content-divider">Written Lesson</div>
 
       <div class="written-content">
         <div class="content-card">
-          <h3>Don't Get Stuck on the Name</h3>
-          <p>Your brand name matters, but not as much as you think it does right now. You know what matters more? That you actually start. You can rebrand later.</p>
-          <p>I built an entire brand called Wisp and Willow in 24 hours. Logo, website, CRM, all of it. That brand went on to hit six figures in 10 months. The name wasn't some big drawn-out decision. It just felt right and I went with it.</p>
-        </div>
-
-        <div class="content-card">
-          <h3>How to Come Up with a Name</h3>
-          <p>If you have the <strong>Brand Detective</strong>, start there. It walks you through questions about your business, personality, and audience, then generates AI prompts to brainstorm names based on your specific brand (not just random words).</p>
-          <p>If you don't have the Brand Detective, think through these questions:</p>
+          <h3>Picking a Name (Without Overthinking It)</h3>
+          <p>People get stuck on their brand name for months. Here's the truth: your name matters less than you think. What matters is that you pick one and move forward.</p>
+          <p>A few tips:</p>
           <ul>
-            <li>What encompasses your brand well?</li>
-            <li>If someone heard your name, would they get a sense of what you do or who you serve?</li>
-            <li>Is it something people could search for and find?</li>
-            <li>Is it already taken?</li>
+            <li>Keep it simple and easy to spell</li>
+            <li>Make sure it's not already taken (search Instagram, Google, and your state's business registry)</li>
+            <li>It should give people a hint of what you do or how you make them feel</li>
+            <li>Say it out loud 10 times. Does it feel good?</li>
           </ul>
         </div>
+        <div class="tip-box">&#128161; <strong>Already have the Brand Detective?</strong> Use your Brand Name Brainstorm prompt to get AI-generated name ideas based on your story and audience. If you don't have it yet, you can grab it later.</div>
 
         <div class="content-card">
-          <h3>Register Your Domain on GoDaddy</h3>
-          <p>Once you have a name, go to <strong>GoDaddy.com</strong> and search for your business name as a .com. Domains are usually around $12 to $15 a year.</p>
-          <p>If your exact name isn't available as a .com, try these:</p>
-          <ul>
-            <li>Add "the" in front of it</li>
-            <li>Add "co" at the end</li>
-            <li>Try a slightly different variation</li>
-          </ul>
-          <p>You want the .com if you can get it. It's what people expect when they type in a web address. If the .com is taken no matter what you try, it might be worth reconsidering the name.</p>
+          <h3>Register Your Domain</h3>
+          <p>Once you've got a name, grab the domain before someone else does. This takes 5 minutes.</p>
         </div>
 
-        <div class="tip-box">&#128161; <strong>Skip the add-ons.</strong> When you're checking out on GoDaddy, they'll try to sell you website hosting, email packages, domain protection upgrades. You don't need any of that right now. Just buy the domain.</div>
-
+        <div class="checklist-header">&#9745; Your Checklist</div>
         <div class="checklist">
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Come up with your business name (use the Brand Detective if you have it, or brainstorm on your own)</div>
+            <div class="check-label">Go to GoDaddy.com (or Namecheap.com)</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Go to GoDaddy.com and search for your name as a .com</div>
+            <div class="check-label">Search for yourbrandname.com</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">If it's available, register it ($12-15/year)</div>
+            <div class="check-label">If it's available, buy it (usually $12-15/year)</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Skip all the add-ons at checkout</div>
+            <div class="check-label">Skip all the upsells at checkout — you don't need them</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Write down your domain name somewhere safe (you'll need it for Lesson 4)</div>
-          </div>
-        </div>
-      </div>
+            <div class="check-label">Turn off auto-renew for extras, keep it on for the domain</div>
+          </div></div></div>
 
       <div class="mark-complete-row">
         <button class="mark-complete-btn" id="completeBtn2" onclick="markComplete(2)">&#10003; Mark Lesson Complete</button>
@@ -657,7 +690,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
     <div class="lesson-content hidden" id="lesson3">
       <div class="lesson-tag">Lesson 3 of 8</div>
       <div class="lesson-title">Make It Legal</div>
-      <div class="lesson-desc">Register your business and make it official. This is way less scary than it sounds, and it takes less than 20 minutes.</div>
+      <div class="lesson-desc">Sole proprietor or LLC? EIN or no? This sounds scary, but it's actually one of the easiest things on the list.</div>
 
       <div class="audio-player">
         <div class="audio-player-label">&#127911; Listen to This Lesson</div>
@@ -669,56 +702,76 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
           </div>
           <button class="audio-speed" onclick="cycleSpeed(this)">1x</button>
         </div>
+        <div class="transcript-row">
+          <button class="transcript-btn" onclick="toggleTranscript(3, this)">&#128196; Transcript</button>
+        </div>
+        <div class="transcript-content" id="transcript3"><button class="transcript-copy" onclick="copyTranscript(3)">Copy Transcript</button>
+<p>All right, this is the lesson that usually freaks people out, and I get it. The second someone says "register your business," your brain probably goes to lawyers and paperwork and forms and "what if I do this wrong?" So I need you to take a deep breath because this is actually one of the most straightforward lessons in this whole kit.</p>
+
+<p>Let me break this down really simply. Like, let's pretend that you and I are just sitting at a coffee shop. Very casual.</p>
+
+<p>When you start selling things, you need to register your business with your state. The simplest way to do that is as what's called a sole proprietor. This is typically what I recommend everybody start with. It's the fastest and the cheapest option. Most states allow you to register for under $100.</p>
+
+<p>You're basically filing what's called a DBA, which stands for "doing business as." It essentially tells the state, hey, I'm running a business under this name. And that's it. You're official. As a sole proprietor, you and your business are the same legal entity. Your business income goes on your personal tax return. It is simple and easy.</p>
+
+<p>Now at some point down the road, you might want to consider filing as an LLC. LLC stands for limited liability company. An LLC basically creates a legal wall between your personal assets and your business assets. If something ever went wrong and somebody tried to sue your business (which is a very tiny chance, so don't panic), your personal stuff is protected. Your house, your car, your savings.</p>
+
+<p>If you are a person who is a homeowner or has other personal assets, I may consider doing an LLC instead. But if your assets are minimal, sole proprietor all the way for now. The LLC also starts to have some tax benefits as you grow, but that is a conversation to have with a tax professional.</p>
+
+<p>If you do want to go ahead and file as an LLC, it's usually around $300 depending on your state. You can do it yourself online. Google your state, file LLC, and your Secretary of State's website will come up. Most states let you do the entire thing online. It takes like 15 to 20 minutes. One thing I will say: don't do LegalZoom or anything like that. If a platform is trying to charge you to file the LLC for you, skip it. You can totally do it yourself.</p>
+
+<p>Next step. If you file as an LLC, you're going to get what's called an EIN number. E-I-N stands for Employer Identification Number. Think of it like a social security number for your business. You'll use your EIN when you open your business bank account, which we'll talk about in a later lesson.</p>
+
+<p>If you go the sole proprietor route, you will not have an EIN unless you apply for one separately. But you can still open a business bank account as a sole proprietor. You will just use your business name and your social security number instead of your EIN.</p>
+
+<p>Here's how you're going to actually do this today. Google your state, register sole proprietor, or your state registered DBA. It will walk you through all of the steps. Fill out the form. Pay the filing fee. And then you're done. You are now registered as a business owner. Legally, nobody can tell you that it isn't real because it is real.</p>
+
+<p>Here's what's going to happen. You're going to feel this little rush when it's done, and then this moment of "wait, I actually have a real business." I want you to lean into that. Screenshot it. Tell somebody. Post it to your stories if you want. This is a really big step that the majority of people never take.</p>
+
+<p>Your checklist: register your business as a sole proprietor or an LLC. If you're an LLC, get your EIN through that process. If you're a sole proprietor, just remember you're going to use your social security number for your business bank account. Save any documents they give you. I have a Google Drive folder where all of my important business files go. Save any confirmation emails, registration details, anything they give you.</p>
+
+<p>And then you're ready for the next lesson. This one's a really fun one. We are setting up your professional email and it's one of those things that instantly makes you look like you've been doing this for years. After you have registered your business, come back here and we'll go on to the next lesson.</p>
+        </div>
       </div>
 
       <div class="content-divider">Written Lesson</div>
 
       <div class="written-content">
         <div class="content-card">
-          <h3>Start as a Sole Proprietor</h3>
-          <p>When you start selling things, you need to register your business with your state. The simplest way is as a <strong>sole proprietor</strong>. This is what I recommend you start with.</p>
-          <p>You're filing what's called a DBA ("doing business as"). It tells the state you're running a business under this name. Most states it's under $100 to register. Sometimes way less. And that's it. You're official.</p>
-          <p>As a sole proprietor, you and your business are the same legal entity. Your business income goes on your personal tax return. Simple.</p>
+          <h3>Sole Proprietor vs. LLC — The Quick Version</h3>
+          <p>You do not need a law degree for this. Here's the simple breakdown:</p>
+          <p><strong>Sole Proprietor:</strong> The easiest option. You are the business. No paperwork to file (in most states). You can start selling today. The downside? Your personal assets aren't protected if something goes wrong.</p>
+          <p><strong>LLC:</strong> Separates your personal stuff from your business stuff. Costs $50-500 depending on your state. Takes 15-30 minutes to set up online. Recommended once you start making real money.</p>
         </div>
+        <div class="tip-box">&#128161; <strong>Rebecca's take:</strong> Start as a sole proprietor if you're just getting going. Once you're consistently making money, file for an LLC. Don't let this step keep you from starting.</div>
 
         <div class="content-card">
-          <h3>When to Consider an LLC</h3>
-          <p>An LLC (Limited Liability Company) creates a legal wall between your personal assets and your business. If something went wrong, your personal stuff (house, car, savings) is protected.</p>
-          <p>LLCs also start to have tax benefits as you grow, but that's a conversation for a tax professional. For right now, as you're just getting started, sole proprietor is the move.</p>
-          <p>If you do want to go ahead with an LLC, it's usually around $300 depending on your state. Google "[your state] file LLC" and your Secretary of State's website will come up. Most states let you do the whole thing online in 15 to 20 minutes.</p>
+          <h3>Getting Your EIN</h3>
+          <p>An EIN (Employer Identification Number) is like a social security number for your business. It's free and takes 5 minutes on the IRS website. You'll need it for taxes and to open a business bank account.</p>
         </div>
 
-        <div class="content-card">
-          <h3>EIN vs. SSN: Which Do You Need?</h3>
-          <p>If you file as an LLC, you'll get an <strong>EIN</strong> (Employer Identification Number) as part of that process. Think of it as a Social Security number for your business. You'll use your EIN to open your business bank account.</p>
-          <p>If you go the sole proprietor route, you won't have an EIN unless you apply for one separately. You can still open a business bank account. You'll just use your business name and your Social Security number instead.</p>
-        </div>
-
-        <div class="tip-box">&#128161; <strong>How to do this today:</strong> Google "[your state] register sole proprietorship" or "[your state] register DBA." Your state's website will walk you through it. Fill out the form, pay the filing fee, done. If you choose LLC instead, Google "[your state] file LLC."</div>
-
+        <div class="checklist-header">&#9745; Your Checklist</div>
         <div class="checklist">
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Decide: Sole proprietor (recommended to start) or LLC</div>
+            <div class="check-label">Decide: Sole proprietor (for now) or LLC</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Register your business with your state's website</div>
+            <div class="check-label">If LLC: File with your state's Secretary of State website</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">If LLC: You'll get your EIN as part of the registration process</div>
+            <div class="check-label">Get your EIN at irs.gov (free, instant)</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">If sole proprietor: Note that you'll use your SSN for your bank account</div>
+            <div class="check-label">Open a separate business bank account</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Save your registration details and any confirmation emails</div>
-          </div>
-        </div>
-      </div>
+            <div class="check-label">Save your documents somewhere safe (Google Drive folder)</div>
+          </div></div></div>
 
       <div class="mark-complete-row">
         <button class="mark-complete-btn" id="completeBtn3" onclick="markComplete(3)">&#10003; Mark Lesson Complete</button>
@@ -733,7 +786,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
     <div class="lesson-content hidden" id="lesson4">
       <div class="lesson-tag">Lesson 4 of 8</div>
       <div class="lesson-title">Set Up Your Custom Email</div>
-      <div class="lesson-desc">Nothing says "I'm a real business" like hello@yourbrand.com. This takes 10 minutes and $6/month.</div>
+      <div class="lesson-desc">hello@yourbrand.com hits different than yourbrand2024@gmail.com. This takes 10 minutes and instantly makes you look legit.</div>
 
       <div class="audio-player">
         <div class="audio-player-label">&#127911; Listen to This Lesson</div>
@@ -745,62 +798,68 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
           </div>
           <button class="audio-speed" onclick="cycleSpeed(this)">1x</button>
         </div>
+        <div class="transcript-row">
+          <button class="transcript-btn" onclick="toggleTranscript(4, this)">&#128196; Transcript</button>
+        </div>
+        <div class="transcript-content" id="transcript4"><button class="transcript-copy" onclick="copyTranscript(4)">Copy Transcript</button>
+<p>Okay, you have already done so well in the previous steps, but I am so excited for this one because this lesson is going to make you feel so legit. Nothing says "I'm a real business" like getting an email from hello@yourbusinessname.com instead of yourbusiness-whatever@gmail.com.</p>
+
+<p>I know it might sound like a small thing, but when somebody gets an email from your custom domain, they immediately take you more seriously. It changes how people perceive you. And really it's so much easier to set up than you'd think.</p>
+
+<p>Here's what you need. Your domain name from lesson 2, and a Google Workspace account. Google Workspace is about $6 a month. That's it. And it is worth every penny because you're not just getting an email address. You actually get upgraded Google Drive storage, Google Calendar, Google Docs, all the Google tools will now be under your business. It's like the best $6 you're going to spend on your business.</p>
+
+<p>To set it up, go to workspace.google.com. Click get started. It's going to ask you for your business name, how many people are on your team (just say it's just you), and then put your contact info. It'll ask you if you have a domain. You do, because if you've followed the directions, you have a domain name. Enter the domain that you registered in lesson two.</p>
+
+<p>Now, Google needs to verify that you actually own this domain. I know that sounds technical, but all it means is you're going to copy a little code that Google gives you and paste it into your domain settings on GoDaddy.com. Google literally walks you through the steps, step by step with screenshots. Usually it takes less than 5 minutes. It's one of those things that sounds harder than it really is.</p>
+
+<p>Once your domain is verified, you're going to pick your email address. I typically like to go with something simple, like hello@yourbusinessname.com. You could put your first name, like rebecca@yourbusinessname.com. For me, I choose hello because anybody on my team will use that same hello@ email address. It's not specifically tied to me.</p>
+
+<p>Here's what's nice about Google Workspace. Your new email works exactly like regular Gmail. Same inbox, same app on your phone, same everything. The only difference is that instead of @gmail.com it says @yourbusinessname.com. So there's literally no learning curve. If you know how to use Gmail, you already know how to use this.</p>
+
+<p>One thing here: don't go off and create a ton of different email addresses right now. You don't need support@, info@, and billing@. Just keep it simple with one email.</p>
+
+<p>Below this audio is a written checklist walking you through every step of the Google Workspace setup. Sign up at workspace.google.com, $6 a month, enter your domain when it asks you, follow Google's instructions to verify your domain, and then choose your email address. Keep it really simple. Log in on your phone or your computer, send yourself a test email to make sure it works. And that's it.</p>
+
+<p>Now you have a professional email address. When you send somebody an invoice or a receipt, or they buy something, and they see your email address, it shows up with your business name. That alone is worth the $6 right there.</p>
+
+<p>Get that set up. You can do that in one afternoon. It should not take you ages. And then in the next lesson, we're going to talk all about bookkeeping and money things. Don't panic if you're not a numbers person. I'm going to keep it simple.</p>
+        </div>
       </div>
 
       <div class="content-divider">Written Lesson</div>
 
       <div class="written-content">
         <div class="content-card">
-          <h3>Why This Matters</h3>
-          <p>When someone gets an email from your custom domain, they immediately take you more seriously. It changes how people perceive you. And it's so much easier to set up than you'd think.</p>
+          <h3>Why a Custom Email Matters</h3>
+          <p>A custom email instantly signals "I'm a real business." It's also necessary for email marketing later (services like Flodesk need a domain-based email to send from).</p>
+          <p>The most popular option is Google Workspace — it's $6/month and gives you Gmail with your own domain. If you're on a tighter budget, your domain registrar (GoDaddy, Namecheap) usually includes basic email for free or cheap.</p>
         </div>
 
-        <div class="content-card">
-          <h3>Set Up Google Workspace</h3>
-          <p>You need your domain name from Lesson 2 and a <strong>Google Workspace</strong> account. Google Workspace is <strong>$6 a month</strong>. You're not just getting an email address. You also get upgraded Google Drive storage, Google Calendar, Google Docs, all the Google tools but under your business. One of the best $6 you'll spend.</p>
-          <p>Here's how to do it:</p>
-          <ul>
-            <li>Go to <strong>workspace.google.com</strong> and click "Get Started"</li>
-            <li>Enter your business name. Say it's just you on the team.</li>
-            <li>When it asks if you have a domain, say yes and enter the domain you registered in Lesson 2</li>
-            <li>Google needs to verify you own this domain. You'll copy a little code Google gives you and paste it into your domain settings on GoDaddy. Google walks you through it step by step. Takes less than 5 minutes.</li>
-            <li>Once verified, pick your email address. Go with something simple: hello@, hey@, or your first name</li>
-          </ul>
-        </div>
-
-        <div class="tip-box">&#128161; <strong>It works like Gmail.</strong> Your new email works exactly like Gmail. Same inbox, same app on your phone. The only difference is it says @yourbusiness.com instead of @gmail.com. Zero learning curve.</div>
-
-        <div class="content-card">
-          <h3>Keep It Simple</h3>
-          <p>Don't create a bunch of different email addresses right now. You don't need support@ and info@ and billing@. You're one person. You need one email.</p>
-        </div>
-
+        <div class="checklist-header">&#9745; Your Checklist</div>
         <div class="checklist">
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Sign up at workspace.google.com ($6/month)</div>
+            <div class="check-label">Choose your email format: hello@, info@, or yourname@</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Enter your domain when it asks</div>
+            <div class="check-label">Sign up for Google Workspace (or use your registrar's email)</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Follow Google's instructions to verify your domain (the copy-paste-the-code step)</div>
+            <div class="check-label">Verify your domain (follow the setup wizard)</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Choose your email address. Keep it simple (hello@, hey@, or your first name)</div>
+            <div class="check-label">Send yourself a test email from your new address</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Set it up on your phone</div>
-          </div>
-          <div class="checklist-item" onclick="toggleCheck(this)">
-            <div class="check-box">&#10003;</div>
-            <div class="check-label">Send yourself a test email to make sure it works</div>
+            <div class="check-label">Update your Instagram bio and link-in-bio with your new email</div>
           </div>
         </div>
+
+        <div class="tip-box">&#128161; <strong>Don't overcomplicate this.</strong> You need one email address right now. You can always add more later (support@, team@, whatever). Just get one set up and move on.</div>
       </div>
 
       <div class="mark-complete-row">
@@ -808,7 +867,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
       </div>
       <div class="lesson-nav">
         <button class="nav-btn secondary" onclick="goLesson(3)">&#8592; Back</button>
-        <button class="nav-btn primary" onclick="goLesson(5)">Next: Get Your Money Right &#8594;</button>
+        <button class="nav-btn primary" onclick="goLesson(5)">Next: Bookkeeping &#8594;</button>
       </div>
     </div>
 
@@ -816,7 +875,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
     <div class="lesson-content hidden" id="lesson5">
       <div class="lesson-tag">Lesson 5 of 8</div>
       <div class="lesson-title">Get Your Money Right</div>
-      <div class="lesson-desc">No QuickBooks. No FreshBooks. Just a simple spreadsheet, a business bank account, and 10 minutes a week.</div>
+      <div class="lesson-desc">You don't need an accountant yet. You need a simple spreadsheet and 10 minutes a week. Here's the system.</div>
 
       <div class="audio-player">
         <div class="audio-player-label">&#127911; Listen to This Lesson</div>
@@ -828,109 +887,110 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
           </div>
           <button class="audio-speed" onclick="cycleSpeed(this)">1x</button>
         </div>
+        <div class="transcript-row">
+          <button class="transcript-btn" onclick="toggleTranscript(5, this)">&#128196; Transcript</button>
+        </div>
+        <div class="transcript-content" id="transcript5"><button class="transcript-copy" onclick="copyTranscript(5)">Copy Transcript</button>
+<p>It's time to talk about money. Now, before your eyes totally glaze over, I need you to stay with me because this is probably the most important lesson in this whole kit. And it's really way simpler than you think.</p>
+
+<p>Here's what I see happen all the time. New business owners do one of two things. They either completely ignore the money side of their business and then have a total panic attack when tax season comes around. Or they buy this super expensive accounting software that they don't understand, open it one time, feel overwhelmed, and then never touch it again. We are not going to do either of those things.</p>
+
+<p>We are going to keep things simple. Start with Google Sheets. You don't need QuickBooks. No monthly subscriptions for software. Just a spreadsheet that's going to track what comes in and what goes out. I have a template for you. It is included as a bonus with this kit. You'll find the link below this lesson. Go click that and make a copy so that you have your own version in your own Google Drive.</p>
+
+<p>I also have a video that walks you through the spreadsheet visually. So if you want to see exactly where to put things and how the columns work, go watch that.</p>
+
+<p>So here's how the spreadsheet works. You have two main sections: your income and your expenses. For income, every time money comes into your business, you log it. The date, what it was, how much, where it came from. For example: May 15th, packing list template, $27. One line. It takes like 10 seconds.</p>
+
+<p>For expenses, same thing. Every time you spend money on your business, log it. Put the date, what it was for, how much, and then the category. Categories could be like software, advertising, education, supplies. The template already has the common ones in there for you.</p>
+
+<p>When should you actually do this? Pick one day a week. Mondays, Fridays, whatever feels like a good day. Sit down for 10 to 15 minutes. Check your business bank account, your checkout platform, your PayPal, wherever money comes in and goes out. Log everything from the past week into your spreadsheet. Then close it. That's it for the week.</p>
+
+<p>If you do this weekly, you are not going to have that terrible moment in March where you're staring at a year's worth of transactions trying to figure out what that $47 charge from October was.</p>
+
+<p>Now, let me talk about taxes. When you're self-employed, nobody withholds taxes from your income like they do a regular paycheck. That is on you. I've seen people get burned by this because they didn't realize they need to set money aside and then they get hit with a giant tax bill. A good practice is to set aside about 30% of your income for taxes. Your actual tax rate may be lower, so talk to a tax professional if you want a more exact number. But 30% is a safe starting point. It's always better to set aside too much and have a nice surprise than owe money you don't have.</p>
+
+<p>The other big thing: you're going to need a business bank account. It's vital that you keep your business transactions separate from your personal transactions. Whether you're a sole proprietor or an LLC, they need to be separate. Go to your local bank or open an account online. A free checking account works. If you've filed as an LLC, use your EIN to open it. If you're a sole proprietor, use your business name and your social security number.</p>
+
+<p>When everything is mixed together in one checking account, it is a nightmare. You can't tell what's business and what's personal. Tax time becomes this awful guessing game. So separate accounts from day one.</p>
+
+<p>Once your business account is open, that's where your business income should go and where your business expenses should come from. Whether you're using a business debit card or a business credit card, everything needs to be just for business. Don't use your personal credit card on paying for ads. That needs to be a business card.</p>
+
+<p>Eventually, you could upgrade to something like QuickBooks. I personally use QuickBooks and have for years, but I used the spreadsheet first for the first two or three years. It just got to the point where the spreadsheet was feeling overwhelming with how many transactions I was putting in.</p>
+
+<p>Also, remember that Google Workspace subscription for your custom email? That's a business expense. Your domain from GoDaddy? Business expense. Any courses or tools you've bought for your business? Business expenses. Track everything because it's all deductible.</p>
+
+<p>Do you need a full-on accountant right now? Probably not yet. The spreadsheet will get you through your first year. When you start making consistent income, like several thousand a month, that's when you may want to consider hiring a bookkeeper or a CPA.</p>
+
+<p>So here's your checklist. Open the bookkeeping template, make a copy. Watch the walkthrough. Open your business bank account if you don't have one. Log any income and expenses you've already had. Set a weekly reminder to update it. And start setting aside that 30% for taxes. Get your numbers in order and then in the next lesson, we get to talk about your online presence, your digital HQ.</p>
+        </div>
       </div>
 
       <div class="content-divider">Written Lesson</div>
 
       <div class="written-content">
         <div class="content-card">
-          <h3>Your Bookkeeping System Is a Google Sheet</h3>
-          <p>You don't need QuickBooks. You don't need FreshBooks. You don't need a monthly subscription for software you'll never use. Just a spreadsheet that tracks what comes in and what goes out.</p>
-          <p>A template is included as a bonus with this kit (linked below). Make a copy so you have your own version. It's already set up. You don't have to build anything from scratch. There's also a Loom video walkthrough linked next to the template that shows you exactly where to put things.</p>
+          <h3>The Simple Bookkeeping System</h3>
+          <p>Bookkeeping sounds intimidating, but all it really means is: know what money comes in, know what money goes out, and keep it separate from your personal spending.</p>
+          <p>That's it. You do not need QuickBooks right now. You need a Google Sheet.</p>
         </div>
 
         <div class="content-card">
-          <h3>How the Spreadsheet Works</h3>
-          <p>Two main sections: income and expenses.</p>
-          <p><strong>Income:</strong> Every time money comes into your business, log the date, what it was for, how much, and where it came from. Example: "May 15, Packing List Template, $27, checkout page." One line. Takes 10 seconds.</p>
-          <p><strong>Expenses:</strong> Every time you spend money on your business, log the date, what it was for, how much, and the category (software, advertising, education, supplies). The template already has common categories.</p>
+          <h3>What to Track</h3>
+          <ul>
+            <li><strong>Income:</strong> Every sale, broken down by product</li>
+            <li><strong>Expenses:</strong> Software subscriptions, ad spend, templates you buy, courses</li>
+            <li><strong>Tax set-aside:</strong> Set aside 25-30% of profit for taxes (open a separate savings account for this)</li>
+          </ul>
+          <p>Do this once a week. Pick a day — maybe Friday afternoon — and spend 10 minutes updating your sheet. Future you will be so grateful.</p>
+        </div>
+
+        <div class="resource-cta-card">
+          <div class="resource-cta-icon">&#128202;</div>
+          <div class="resource-cta-text">
+            <div class="resource-cta-title">Bookkeeping Template</div>
+            <div class="resource-cta-desc">Google Sheets template — click below to make your own copy and start tracking.</div>
+          </div>
+          <a class="resource-cta-btn" href="https://docs.google.com/spreadsheets/d/1HCH23J41yuvS4dLzzdr59CPdT8cK1NlUuqUs9P4Dft0/copy" target="_blank">Get Your Copy &#8594;</a>
         </div>
 
         <div class="content-card">
-          <h3>The Weekly 10-Minute System</h3>
-          <p>Pick one day a week. Sit down for 10 to 15 minutes. Check your business bank account, your checkout platform, wherever money comes in and goes out. Log everything from the past week. Done. Close the spreadsheet.</p>
-          <p>If you do this weekly, you're never going to have that terrible moment in March where you're staring at a year's worth of transactions trying to figure out what that $47 charge from October was.</p>
+          <h3>Watch: How to Use the Template</h3>
+          <p>Quick walkthrough of how to set up and use your bookkeeping spreadsheet.</p>
+          <div class="video-player">
+            <video controls playsinline preload="metadata" style="width:100%; border-radius:12px; background:#000;">
+              <source src="https://simplecreatorco.github.io/business-starter-kit/bookkeeping-walkthrough.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
 
-        <div class="content-card">
-          <h3>Taxes: Set Aside 30%</h3>
-          <p>When you're self-employed, nobody is withholding taxes from your income. That's on you.</p>
-          <p>Set aside about <strong>30% of your income</strong> for taxes. Your actual rate might be lower, but 30% is a safe starting point. If you want a more exact number, talk to a tax professional. It's always better to set aside too much and have a nice surprise at tax time than to owe money you don't have.</p>
-          <p>Some people open a separate savings account just for taxes. Not a bad idea.</p>
-        </div>
+        <div class="tip-box">&#128161; <strong>Bonus tip:</strong> Set a weekly recurring calendar reminder: "Update my books" — 10 min max. Pick a day and stick to it. Future you will be so grateful.</div>
 
-        <div class="content-card">
-          <h3>Open a Business Bank Account</h3>
-          <p>Go to your local bank or open one online. A free checking account works. If you filed as an LLC, use your EIN. If you're a sole proprietor, use your business name and Social Security number.</p>
-          <p>The whole point: keep your business money and personal money separate. When everything is mixed in one account, it's a nightmare. Tax time becomes a guessing game. Separate accounts from day one makes everything cleaner.</p>
-          <p>Once your bank account is set up, that's where your business income should go and where your business expenses should come from.</p>
-        </div>
-
-        <div class="tip-box">&#128161; <strong>Track everything.</strong> Your Google Workspace subscription from Lesson 4? Business expense. Your domain from Lesson 2? Business expense. Any courses or tools you've bought for your business? Business expenses. Track all of it.</div>
-
-        <div style="display:flex; flex-direction:column; gap:10px; align-items:center; margin:20px 0;">
-          <a href="#" class="resource-card" style="display:flex; align-items:center; gap:14px; max-width:420px; width:100%; padding:18px 24px; border:2px solid #e8e8e8; text-decoration:none; transition:all 0.15s; background:#fff;">
-            <svg width="32" height="32" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-              <path d="M4.7 13.6L29.2 0l24.4 13.6v50.8L29.2 78 4.7 64.4z" fill="#0F9D58"/>
-              <path d="M53.6 13.6L78.1 0l4.5 2.5v59.4L58.1 75.5l-4.5-2.5z" fill="#188038"/>
-              <path d="M29.2 39l24.4-13.6v27.2z" fill="#34A853" opacity=".5"/>
-              <rect x="18" y="22" width="40" height="34" rx="3" fill="white"/>
-              <line x1="24" y1="31" x2="52" y2="31" stroke="#0F9D58" stroke-width="2"/>
-              <line x1="24" y1="39" x2="52" y2="39" stroke="#0F9D58" stroke-width="2"/>
-              <line x1="24" y1="47" x2="52" y2="47" stroke="#0F9D58" stroke-width="2"/>
-              <line x1="38" y1="25" x2="38" y2="53" stroke="#0F9D58" stroke-width="1.5"/>
-            </svg>
-            <div>
-              <div class="resource-name">Bookkeeping Template</div>
-              <div class="resource-desc">Google Sheets template. Make a copy and start tracking.</div>
-            </div>
-          </a>
-          <a href="#" class="resource-card" style="display:flex; align-items:center; gap:14px; max-width:420px; width:100%; padding:18px 24px; border:2px solid #e8e8e8; text-decoration:none; transition:all 0.15s; background:#fff;">
-            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-              <rect width="32" height="32" rx="6" fill="#625DF5"/>
-              <polygon points="13,9 13,23 24,16" fill="white"/>
-            </svg>
-            <div>
-              <div class="resource-name">Loom Walkthrough</div>
-              <div class="resource-desc">Watch me walk you through the spreadsheet step by step.</div>
-            </div>
-          </a>
-        </div>
-
+        <div class="checklist-header">&#9745; Your Checklist</div>
         <div class="checklist">
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Open the bookkeeping template and make a copy</div>
+            <div class="check-label">Make a copy of the bookkeeping template</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Watch the Loom walkthrough</div>
+            <div class="check-label">Open a separate business bank account (if you haven't yet)</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Open a business bank account (if you don't have one)</div>
+            <div class="check-label">Open a separate savings account for tax set-asides</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Log any income and expenses you've already had</div>
-          </div>
-          <div class="checklist-item" onclick="toggleCheck(this)">
-            <div class="check-box">&#10003;</div>
-            <div class="check-label">Set a weekly phone reminder to update your books (10 min, one day a week)</div>
-          </div>
-          <div class="checklist-item" onclick="toggleCheck(this)">
-            <div class="check-box">&#10003;</div>
-            <div class="check-label">Start setting aside 30% of income for taxes (or talk to a tax professional for your specific number)</div>
-          </div>
-        </div>
-      </div>
+            <div class="check-label">Set a weekly calendar reminder to update your books</div>
+          </div></div></div>
 
       <div class="mark-complete-row">
         <button class="mark-complete-btn" id="completeBtn5" onclick="markComplete(5)">&#10003; Mark Lesson Complete</button>
       </div>
       <div class="lesson-nav">
         <button class="nav-btn secondary" onclick="goLesson(4)">&#8592; Back</button>
-        <button class="nav-btn primary" onclick="goLesson(6)">Next: Your Digital HQ &#8594;</button>
+        <button class="nav-btn primary" onclick="goLesson(6)">Next: Your Website &#8594;</button>
       </div>
     </div>
 
@@ -938,7 +998,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
     <div class="lesson-content hidden" id="lesson6">
       <div class="lesson-tag">Lesson 6 of 8</div>
       <div class="lesson-title">Your Digital HQ</div>
-      <div class="lesson-desc">You need two things: a way for people to find you and a way for people to buy from you. Here's exactly how to set that up without overcomplicating it.</div>
+      <div class="lesson-desc">You don't need a fancy website right now. You need a home base. Here's what that looks like and your options for getting one up fast.</div>
 
       <div class="audio-player">
         <div class="audio-player-label">&#127911; Listen to This Lesson</div>
@@ -950,68 +1010,94 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
           </div>
           <button class="audio-speed" onclick="cycleSpeed(this)">1x</button>
         </div>
+        <div class="transcript-row">
+          <button class="transcript-btn" onclick="toggleTranscript(6, this)">&#128196; Transcript</button>
+        </div>
+        <div class="transcript-content" id="transcript6"><button class="transcript-copy" onclick="copyTranscript(6)">Copy Transcript</button>
+<p>Okay, websites. This is the lesson where I need to talk you off the ledge a bit, possibly, because when people hear "you need a web presence," their brain immediately goes to this massive, beautifully designed, custom built website with a blog and a portfolio and 12 pages of professionally designed everything with $3,000 and a month of work. No. You do not need any of that right now.</p>
+
+<p>Here is what you actually need. A way for people to find you and a way for people to buy from you. That's it.</p>
+
+<p>Let's start with the buying part because that's the most important piece. If people cannot give you money, nothing else matters. If you do not have a website yet, here's what I recommend. Start with Flodesk. Flodesk lets you build a sales page and a checkout all in one place. You can have a page that describes your product, tells people what it is, what's included, and then it has a buy button right there. It handles payment and delivers the product all in one. So you do not need a separate website for this. You don't need a separate checkout tool. It's all one thing.</p>
+
+<p>If you went through Made to Sell, I teach Flodesk in there, so you may already have that part set up. The point is, you can be selling your digital product today with just a Flodesk page. You don't have to wait until you have a full website.</p>
+
+<p>Now, as you're establishing your business, it is a good idea to eventually have an actual website. Not because your Flodesk page isn't working, but because a website gives you a home base. It's where people can learn about you, see what you're about, and trust you before they buy. It also helps you get found on Google over time.</p>
+
+<p>When you're ready for a website, I recommend Showit. S-H-O-W-I-T. That's the platform I have used for years and years. It is drag and drop, very user friendly, and they have lots of free templates to get started. You do not need to pay for a custom template right away.</p>
+
+<p>Here's the pages that you actually need. A homepage: who you are, what you do, and some kind of button that takes people to your product. An about section: who is behind the brand, why you started this, what you care about. A contact page or section: your email address, maybe a simple form. And eventually a blog page. You don't have to have blog posts on day one, but having the page there means you can start adding content later.</p>
+
+<p>Really, your homepage, your about page, and your contact could even be one long scrolling page with different sections. It can literally be one page. Don't overthink it. Done is better than perfect.</p>
+
+<p>Once you have your website set up, your Flodesk checkout doesn't go away. You just link it from your website. Somebody lands on your website, they learn about you, they click buy, and it takes them to your Flodesk checkout. They work together.</p>
+
+<p>Now I want to mention the Brand Detective, because this is where a lot of people get stuck. They have Showit open, they're staring at their page, and they're like, what do I even write? Your website is only as good as the words on it. You can have the prettiest designs in the world, but if the copy doesn't connect with your person, nobody is going to buy. The Brand Detective walks you through figuring out your brand identity, who you're talking to, what problem you're solving, and then helps you write your website copy based on your actual brand.</p>
+
+<p>Here's my biggest piece of advice for this whole lesson. Don't get stuck on the website. I've seen so many people spend months tweaking fonts and rearranging things and they never actually launch. They have this beautiful website and zero sales because they never put their product out there. So get your Flodesk page set up, start selling, and then build the website alongside that or after. Do not let the website be the thing that keeps you from making money.</p>
+
+<p>So here's your checklist. If you don't have a way to sell yet, set up Flodesk. When you're ready for a website, check out Showit and their free templates. Plan your pages: home, contact, about, and eventually a blog. Keep it simple. And if you need help writing the words, the Brand Detective tool can help you through all of it.</p>
+
+<p>Get it done and live. Once it's live, you can always make tweaks. But it's not going to be perfect when you launch it and that's okay. Give yourself maybe two days to get it live. Set yourself a deadline. And then move on to the next lesson.</p>
+        </div>
       </div>
 
       <div class="content-divider">Written Lesson</div>
 
       <div class="written-content">
         <div class="content-card">
-          <h3>Start Selling with Flodesk (No Website Needed)</h3>
-          <p>You don't need a massive, beautifully designed, custom-built website with 12 pages and a $3,000 designer. You need two things: a way for people to find you and a way for people to buy from you.</p>
-          <p>Start with <strong>Flodesk</strong>. It lets you build a sales page and a checkout all in one place. Your product description, what's included, the buy button, payment processing, product delivery. All in one tool. You don't need a separate website or separate checkout. You can be selling your digital product today with just a Flodesk page.</p>
-          <p>If you went through Made to Sell, Flodesk is taught in there, so you might already be set up.</p>
-        </div>
-
-        <div class="content-card">
-          <h3>When You're Ready: Build a Website with Showit</h3>
-          <p>Eventually, you'll want an actual website. Not because your Flodesk page isn't working, but because a website gives you a home base. It's where people learn about you, trust you before they buy, and find you on Google over time.</p>
-          <p>I recommend <strong>Showit</strong>. It's drag and drop, user-friendly, and they have free templates to start with. You do not need to pay for a custom template right away.</p>
-          <p>Here are the pages you actually need:</p>
+          <h3>Do You Even Need a Website Right Now?</h3>
+          <p>If you're selling digital products through Flodesk Checkout or a platform like Stan Store, you can technically start without a website. But having one — even a simple one — makes everything feel more legitimate.</p>
+          <p>The good news: you don't need 47 pages. You need 3-4:</p>
           <ul>
-            <li><strong>Homepage:</strong> Who you are, what you do, and a button that takes people to your product. Clear and simple.</li>
-            <li><strong>About page:</strong> A few paragraphs about you, why you started this, what you care about. Keep it real.</li>
-            <li><strong>Contact page:</strong> Your email address and maybe a simple form.</li>
-            <li><strong>Eventually a blog page:</strong> You don't need posts on day one, but having the page there means you can add content later.</li>
+            <li><strong>Homepage:</strong> Who you are, what you do, one clear CTA</li>
+            <li><strong>Sales page:</strong> For your main product</li>
+            <li><strong>About page:</strong> Your story (people buy from people)</li>
+            <li><strong>Contact page:</strong> How to reach you</li>
           </ul>
-          <p>Your homepage, about, and contact could even be one long scrolling page with different sections. One page. Done is better than perfect.</p>
         </div>
-
         <div class="content-card">
-          <h3>How They Work Together</h3>
-          <p>Once you have your website, your Flodesk checkout doesn't go away. You just link to it from your website. Someone lands on your site, learns about you, clicks "buy," and it takes them to your Flodesk checkout page.</p>
+          <h3>Recommended Platform</h3>
+          <p>I recommend <a href="https://account.showit.co/r/p142hh1l" target="_blank" style="color:var(--color-primary);font-weight:700;">Showit</a>. It's what I've used for years. Drag-and-drop, gorgeous templates, very user-friendly. They have free templates to get started so you don't need to pay for a custom design right away. Just swap in your own photos and words and you're good to go.</p>
+          <p style="font-size:11px; color:var(--color-body-light); margin-top:8px; line-height:1.5;">This is an affiliate link. You'll get your first month free and I may earn a small commission at no extra cost to you.</p>
+        </div>
+        <div class="resource-cta-card">
+          <div class="resource-cta-icon">&#127760;</div>
+          <div class="resource-cta-text">
+            <div class="resource-cta-title">Showit</div>
+            <div class="resource-cta-desc">Get your first month free. Drag-and-drop website builder with beautiful free templates.</div>
+          </div>
+          <a class="resource-cta-btn" href="https://account.showit.co/r/p142hh1l" target="_blank">Try Showit Free &#8594;</a>
+        </div>
+        <div class="tip-box">&#128161; <strong>Don't know what to write on your website?</strong> That's exactly what the Copy Detective is for. It walks you through your messaging and generates AI-powered copy for every page. Grab it if you haven't already.</div>
+
+        <div class="resource-cta-card">
+          <div class="resource-cta-icon">&#128218;</div>
+          <div class="resource-cta-text">
+            <div class="resource-cta-title">6-Figure Branding Hacks</div>
+            <div class="resource-cta-desc">The exact tools and shortcuts I used to build an entire brand in 24 hours that went on to hit six figures in 10 months. Coolors, Canva, Pinterest mood boarding, AI — all in one guide.</div>
+          </div>
+          <a class="resource-cta-btn" href="https://simplecreator.mysamcart.com/checkout/6-figure-branding" target="_blank">Get the Guide &#8594;</a>
         </div>
 
-        <div class="tip-box">&#128161; <strong>Stuck on what to write?</strong> The Brand Detective walks you through figuring out your brand identity, who you're talking to, and what problem you're solving. Then it helps you write your website copy based on your actual brand and ideal buyer. No staring at a blank page.</div>
-
-        <div class="content-card">
-          <h3>Don't Get Stuck on the Website</h3>
-          <p>This is the biggest warning in this lesson. Too many people spend months tweaking fonts and rearranging images and never actually launch. They have a beautiful website and zero sales because they never put their product out there.</p>
-          <p>Get your Flodesk page up. Start selling. Build the website alongside that, or after. Don't let the website be the thing that keeps you from making money.</p>
-        </div>
-
+        <div class="checklist-header">&#9745; Your Checklist</div>
         <div class="checklist">
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">If you don't have a way to sell yet: set up a Flodesk page for your product (sales page + checkout, all in one)</div>
+            <div class="check-label">Sign up for Showit (free templates available, first month free with the link above)</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">When you're ready for a website: check out Showit and their free templates</div>
+            <div class="check-label">Pick a template or start with a simple one-page layout</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Plan your pages: home, about, contact, and eventually blog (a one-pager with sections is totally fine)</div>
+            <div class="check-label">Connect your custom domain</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">If you need help with copy, use the Brand Detective</div>
-          </div>
-          <div class="checklist-item" onclick="toggleCheck(this)">
-            <div class="check-box">&#10003;</div>
-            <div class="check-label">Link your Flodesk checkout from your website once it's built</div>
-          </div>
-        </div>
-      </div>
+            <div class="check-label">Write your homepage headline and one paragraph about what you do</div>
+          </div></div></div>
 
       <div class="mark-complete-row">
         <button class="mark-complete-btn" id="completeBtn6" onclick="markComplete(6)">&#10003; Mark Lesson Complete</button>
@@ -1026,7 +1112,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
     <div class="lesson-content hidden" id="lesson7">
       <div class="lesson-tag">Lesson 7 of 8</div>
       <div class="lesson-title">Designate Your Workspace</div>
-      <div class="lesson-desc">You don't need a home office. You need a spot. This lesson is about the mindset shift that happens when you have a place where you work.</div>
+      <div class="lesson-desc">This one's fun. Find your spot, set it up, and make it feel like yours. Even if it's the corner of your kitchen counter.</div>
 
       <div class="audio-player">
         <div class="audio-player-label">&#127911; Listen to This Lesson</div>
@@ -1038,78 +1124,80 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
           </div>
           <button class="audio-speed" onclick="cycleSpeed(this)">1x</button>
         </div>
+        <div class="transcript-row">
+          <button class="transcript-btn" onclick="toggleTranscript(7, this)">&#128196; Transcript</button>
+        </div>
+        <div class="transcript-content" id="transcript7"><button class="transcript-copy" onclick="copyTranscript(7)">Copy Transcript</button>
+<p>I just love this lesson because this is one where everything starts to feel real. Like physically, tangibly real. We are talking about your workspace.</p>
+
+<p>I know what you might be thinking. Rebecca, I don't have a home office. Like, do I really need a workspace? Listen, you don't have to have a home office, but I strongly believe you need a spot. That's it. Just a spot.</p>
+
+<p>It could be a corner of your kitchen counter or your table. It could be a closet that you've cleared out. It could be on your bed with your lap desk. Honestly, it doesn't matter where it is. What matters is that you have a place, a designated place where you sit down, your brain shifts, and you go from "I'm just hanging out" to "I am working on my business."</p>
+
+<p>That shift is actually a really big deal because right now, a lot of you are likely building your business in these in-between moments. During nap time, after bedtime, the 30 minutes between school drop off and the next thing. And when you don't have a dedicated spot, it's really easy for those moments to just kind of float by without ever really locking in. You end up half working, half scrolling, half watching something, and then an hour goes by and you feel like you got nothing done.</p>
+
+<p>When you have a spot, even if it's small, something clicks. You sit down and your brain knows: okay, it's go time. It's like a mindset shift. And that's actually the most important part of this lesson. It's not about the desk or the chair. It's about starting to see yourself as a business owner. And business owners have a place where they work.</p>
+
+<p>So I want you to pick your spot right now. Look around and decide where your spot is going to be. And then I want you to make it yours because there's something really special about curating a little space that you love. It doesn't have to be Pinterest-worthy. It doesn't have to be expensive. It just has to make you want to sit down and create.</p>
+
+<p>Maybe that's a candle that you love or a mug that makes you smile. A physical planner that feels good to write in. A lap desk if you're a couch or bed worker. I love working from my bed, honestly. Maybe it's some headphones so you can focus even if your house is loud. Whatever makes that space feel like yours. Keep it simple. You don't have to buy an entire office setup.</p>
+
+<p>Here's the fun part. Once your workspace is set up, I want you to take a photo of it. And I want you to post it. If you're in our community, go post it there and tag me. Share it with somebody. There's something about saying out loud, "this is where I run my business," that makes the whole thing click. Even if it's just a folding table in the corner of your laundry room. Especially if it's a folding table in the corner of your laundry room. Because that's what makes it real. And real is what we're going for here.</p>
+
+<p>So today, look around, pick your spot, set it up with a few things that make it feel like yours, and take your photo. Because one day you're going to want to look back at that and it's going to be really, really special.</p>
+
+<p>Find your spot and curate it, and then we can get to our final lesson, which is so, so important. That is setting your boundaries. I'll meet you over there.</p>
+        </div>
       </div>
 
       <div class="content-divider">Written Lesson</div>
 
       <div class="written-content">
         <div class="content-card">
-          <h3>You Need a Spot, Not an Office</h3>
-          <p>It can be a corner of your kitchen counter. A closet you've cleared out. The end of your dining room table. Your bed with a lap desk. It doesn't matter where it is. What matters is that when you sit down there, your brain shifts from "I'm just hanging out" to "I'm working on my business."</p>
-          <p>Without a designated spot, it's easy for your work time to float by. You end up half-working, half-scrolling, half-watching something, and then an hour goes by and you feel like you got nothing done.</p>
-          <p>When you have a spot, even if it's small, even if it's not pretty, something clicks. You sit down and your brain knows it's go time. That's actually the most important part of this lesson. It's not about the desk or the chair. It's about starting to see yourself as a business owner. And business owners have a place where they work.</p>
+          <h3>Why Your Space Matters</h3>
+          <p>When you have a designated workspace — even if it's tiny — your brain switches into "work mode" when you sit down. It's a physical signal that this is real.</p>
+          <p>You don't need a home office. You need a spot that's yours. A fold-down desk in the corner. A lap desk on the couch. A specific chair at the kitchen table. Whatever works.</p>
         </div>
-
         <div class="content-card">
-          <h3>Make It Yours</h3>
-          <p>There's something special about curating a little space that you love. It doesn't have to be Instagram-worthy or expensive. It just has to make you want to sit down and create. Some ideas:</p>
+          <h3>Setting Up Your Space</h3>
+          <p>A few things that make a big difference:</p>
           <ul>
-            <li>A candle you love</li>
-            <li>A mug that makes you smile</li>
-            <li>A planner that feels good to write in</li>
-            <li>A lap desk if you're a couch or bed worker</li>
-            <li>Headphones so you can focus even when the house is loud</li>
+            <li>Good lighting (even a cheap desk lamp helps)</li>
+            <li>A notebook or planner for quick brain dumps</li>
+            <li>Headphones (especially if you're working during nap time)</li>
+            <li>A water bottle (stay hydrated, CEO)</li>
+            <li>Something that makes you smile — a candle, a plant, a cute mug</li>
           </ul>
-          <p>Keep it simple. You don't need a whole office setup. You need a spot and a couple things that make it feel intentional.</p>
         </div>
-
         <div class="content-card">
-          <h3>My Picks</h3>
-          <p>Some of my favorite workspace essentials. All budget-friendly.</p>
+          <h3>Rebecca's Picks</h3>
+          <p>Here are some of my favorite workspace essentials. All budget-friendly, all things I actually use.</p>
           <div class="resource-grid">
-            <div class="resource-card">
+            <a class="resource-card" href="https://amzn.to/4bNcshc" target="_blank">
               <div class="resource-icon">&#128187;</div>
               <div class="resource-name">Lap Desk</div>
-              <div class="resource-desc">Perfect if your couch is your office</div>
-            </div>
-            <div class="resource-card">
+              <div class="resource-desc">Perfect if your couch is your office. Game changer for bed workers too.</div>
+            </a>
+            <a class="resource-card" href="https://amzn.to/3T6jW8H" target="_blank">
               <div class="resource-icon">&#128214;</div>
               <div class="resource-name">Planner</div>
-              <div class="resource-desc">One planner, one to-do list, no complicated systems</div>
-            </div>
-            <div class="resource-card">
-              <div class="resource-icon">&#128197;</div>
-              <div class="resource-name">Kat's Calendars</div>
-              <div class="resource-desc">Gorgeous wall calendars that double as decor</div>
-            </div>
-            <div class="resource-card">
-              <div class="resource-icon">&#128218;</div>
-              <div class="resource-name">Book Picks</div>
-              <div class="resource-desc">My favorite business books for beginners</div>
-            </div>
+              <div class="resource-desc">Keep it simple. One planner, one to-do list, no complicated systems.</div>
+            </a>
+            <a class="resource-card" href="https://amzn.to/4wGPZud" target="_blank">
+              <div class="resource-icon">&#127911;</div>
+              <div class="resource-name">Headphones</div>
+              <div class="resource-desc">Noise canceling so you can focus even when your house is loud.</div>
+            </a>
+            <a class="resource-card" href="https://amzn.to/4yoVBLh" target="_blank">
+              <div class="resource-icon">&#128161;</div>
+              <div class="resource-name">Desk Lamp</div>
+              <div class="resource-desc">Good lighting makes a bigger difference than you'd think. This one's cheap and great.</div>
+            </a>
           </div>
+          <p style="font-size:11px; color:var(--color-body-light); margin-top:12px; line-height:1.5;">These are affiliate links, which means I may earn a small commission if you purchase through them at no extra cost to you. I only recommend products I personally use and love.</p>
         </div>
 
-        <div class="tip-box">&#128161; <strong>Take a photo.</strong> Once your workspace is set up, snap a pic. Post it if you want. Tag @simplecreatorco. There's something about saying "this is where I run my business" that makes the whole thing click. Even if it's a folding table in your laundry room. Especially then.</div>
-
-        <div class="checklist">
-          <div class="checklist-item" onclick="toggleCheck(this)">
-            <div class="check-box">&#10003;</div>
-            <div class="check-label">Pick your spot. Look around and decide right now</div>
-          </div>
-          <div class="checklist-item" onclick="toggleCheck(this)">
-            <div class="check-box">&#10003;</div>
-            <div class="check-label">Set it up with a few things that make it feel like yours</div>
-          </div>
-          <div class="checklist-item" onclick="toggleCheck(this)">
-            <div class="check-box">&#10003;</div>
-            <div class="check-label">Check out the resource links above for ideas</div>
-          </div>
-          <div class="checklist-item" onclick="toggleCheck(this)">
-            <div class="check-box">&#10003;</div>
-            <div class="check-label">Take a photo of your workspace (you'll look back at it someday)</div>
-          </div>
-        </div>
+        <div class="tip-box">&#128161; <strong>Make it shareable.</strong> Once you've set up your workspace, take a photo and share it. Tag @simplecreatorco — we want to see your CEO corner.</div>
       </div>
 
       <div class="mark-complete-row">
@@ -1125,7 +1213,7 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
     <div class="lesson-content hidden" id="lesson8">
       <div class="lesson-tag">Lesson 8 of 8</div>
       <div class="lesson-title">Set Your Boundaries</div>
-      <div class="lesson-desc">You can have the best business name, the cleanest website, the most organized spreadsheet. If you don't set boundaries, none of it matters. This is what keeps everything sustainable.</div>
+      <div class="lesson-desc">This is the lesson nobody teaches but everyone needs. Protect your time, your energy, and your sanity from day one.</div>
 
       <div class="audio-player">
         <div class="audio-player-label">&#127911; Listen to This Lesson</div>
@@ -1137,71 +1225,94 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
           </div>
           <button class="audio-speed" onclick="cycleSpeed(this)">1x</button>
         </div>
+        <div class="transcript-row">
+          <button class="transcript-btn" onclick="toggleTranscript(8, this)">&#128196; Transcript</button>
+        </div>
+        <div class="transcript-content" id="transcript8"><button class="transcript-copy" onclick="copyTranscript(8)">Copy Transcript</button>
+<p>Okay, friend, this is the last lesson, and I have saved this one for the end on purpose. But first I want you to celebrate how far you have come. You have completed 7 lessons. We're here on lesson number 8 and that is something to be celebrated because you have made extremely big strides in legitimizing your business. You have a real business. You are a real business owner now. And I seriously could not be more proud.</p>
+
+<p>I wanted to include this lesson here because here's the thing. You can have the best business name, the cleanest website, the most organized bookkeeping spreadsheet, but if you don't set boundaries around this thing, none of it matters. And you will burn out. So that's why we're here. I'm going to share some things that I have learned the hard way.</p>
+
+<p>The first thing I need you to know is having your own business does not mean you have to be available all the time. I think we have this picture in our head that being a business owner means always being on. Always checking, always responding, always working on something. But the whole point of building something on your own terms is that you get to decide when you work.</p>
+
+<p>So we're going to pick your work hours. And I don't mean "I'll just work whenever I can," because "whenever I can" turns into all the time really, really fast. I want specific hours on specific days.</p>
+
+<p>This is going to look different for everybody, and that is the whole point. If you're a mom with little ones at home, maybe your work hours are nap time and an hour after bedtime. That's 3 to 4 hours. That's plenty. I built my business on those margins. I still run my business on those margins. Right now, I work 2 days a week for 4 hours each day. Tuesdays and Thursdays, 8 hours a week total. That's it. And everything I need to get done happens in those windows.</p>
+
+<p>Whatever season you're in right now, pick the hours that work for you in this season and write them down. And then tell somebody. This is the part that people skip and it's the part that makes the biggest difference. If you're married, tell your spouse. If you're not married, tell your roommate, tell your friend, tell whoever shares your space. Say, "these are my work hours, and during this time, I need to focus."</p>
+
+<p>When you don't communicate it, one of two things happen. Either people interrupt you constantly and you never get anything done. Or you feel guilty about every single second that you spend working because nobody knows that you're supposed to be working. Both of those are terrible. Have the conversation. When your spouse sees you taking this thing seriously, they start to take it seriously too.</p>
+
+<p>Next thing: turn off your notifications. All of them. I cannot believe how many people still have their Instagram notifications on. Every single like, every comment, every DM, buzzing on your phone all day long. Turn them off right now. Go into your settings, notifications, and turn them off for everything. You can check Instagram when you sit down to work. You don't need to pull it out every 30 seconds during your real life.</p>
+
+<p>I actually took a major social media break a while back. I deleted all the apps from my home screen. I set time limits, the whole thing. I can tell you within 48 hours, I felt like a different person. I was more present with my kids. I was reaching for a book instead of my phone. And my business was completely fine through all of that. I didn't miss anything important. Nothing fell apart.</p>
+
+<p>The same goes for your email. You do not need to check your email all day. Nothing in your inbox is an emergency. I'm going to say it again. Nothing in your inbox is an emergency. It is absolutely okay to check your inbox twice a day during your work hours. When it's your work time, check in, respond, handle what needs to be handled, and then close it.</p>
+
+<p>Responding to DMs and customer questions is also not an emergency. I know this is hard, especially when you're new, because everything feels urgent. Somebody messages about your product and your brain goes, "I need to respond right now or I'm going to lose the sale." You won't. People are a lot more patient than you think. A few hours is totally fine. Even 24 hours is fine for most things. What's not fine is training yourself to drop everything every single time your phone lights up. That is not a business. That is a leash.</p>
+
+<p>Another boundary: close your laptop. When your work hours are over, physically close your laptop. Not minimize the tab. Close the whole thing, put it away, and walk away. I keep my laptop in my office. It doesn't come to the couch. It doesn't come to the dinner table.</p>
+
+<p>My son, when he was much younger, he would say "all done, all done" and try to physically close my laptop. And one of those times, I remember thinking, this is not why I built my business. I built it so I could have more time with my kids, not less. That was my turning point. So the next day, I set my work hours, I made the boundary. And here's what happened. Nothing bad happened. Sales still came in. Customers still got helped, maybe a few hours later. My evenings came back. My presence came back. The guilt went away.</p>
+
+<p>You are building this business so that you could have a better life, not so that your business can take over your life. So protect your time because it's the most valuable thing that you have.</p>
+
+<p>Here's what I want you to do. Write down specific work hours and days. Tell your spouse or somebody in your house what those are. Turn off your notifications, all of them. Set a specific time to batch respond to emails and DMs during your work hours. And when your work time is done, close your laptop. Not minimize. Close it. Be done.</p>
+
+<p>And with that, we are done. The whole Business Starter Kit, all 8 lessons complete. Your business has a real foundation now. You have a name, a domain, your entity is registered. You've got a professional email, a bookkeeping system, a way for people to buy from you, a workspace, and boundaries that are going to keep this whole thing going. You did the thing that most people never do. And you didn't just think about it or plan. You built it. I am so thrilled for you. Go give yourself a little treat. You deserve it. And then we can go on to making sales because you are absolutely ready for it.</p>
+        </div>
       </div>
 
       <div class="content-divider">Written Lesson</div>
 
       <div class="written-content">
         <div class="content-card">
-          <h3>Pick Your Work Hours</h3>
-          <p>Having your own business does not mean you have to be available all the time. The whole point of building something on your own terms is that you get to decide when you work.</p>
-          <p>Don't say "I'll just work whenever I can." That turns into "all the time" really fast. Pick <strong>specific hours on specific days</strong>.</p>
-          <p>If you're a mom with little ones, maybe your work hours are nap time and an hour after bedtime. That's 3 to 4 hours. That's plenty. I built my business in those margins. Right now I work about 4 hours a day on Tuesdays and Thursdays. When I first started, I was working after bedtime while also working a full-time job. The hours looked totally different then, and that was okay for that season.</p>
-          <p>Whatever your season is right now, pick hours that work for it and write them down.</p>
+          <h3>Choose Your Work Hours</h3>
+          <p>You started this business for freedom. Don't accidentally build yourself a 24/7 job.</p>
+          <p>Pick your work hours and write them down. If nap time is your window, great — that's 1-2 hours a day. If it's 8-10 PM after bedtime, that works too. But at your chosen end time, close the laptop. For real.</p>
+          <p>There will always be one more thing to do. That one more thing will be there tomorrow.</p>
         </div>
-
         <div class="content-card">
-          <h3>Tell Someone</h3>
-          <p>Tell your partner, spouse, roommate, whoever shares your space. Say: "These are my work hours. During this time, I need to focus."</p>
-          <p>When you don't communicate it, one of two things happens. Either people interrupt you constantly and you never get anything done. Or you feel guilty about every second you spend working because nobody knows you're supposed to be working. Both are terrible.</p>
-          <p>When you say "I work Tuesdays and Thursdays from 8 to noon," that's clear. That's something people can support.</p>
+          <h3>Turn Off Notifications</h3>
+          <p>This one is non-negotiable. Right now, go to your phone settings and turn off Instagram notifications. All of them. Push notifications, DM notifications, like notifications. All of it.</p>
+          <p>Nothing on Instagram is an emergency. Nothing in your inbox is an emergency. You will check these things during your work hours, and that is enough.</p>
         </div>
-
         <div class="content-card">
-          <h3>Turn Off Your Notifications</h3>
-          <p>Go to your Instagram settings, go to notifications, and turn all of them off. Every like, every comment, every DM. All of it. Right now.</p>
-          <p>You'll check Instagram when you sit down to work. You do not need it pulling you in every 30 seconds during your real life.</p>
-          <p>Same goes for email. Check it once or twice a day during your work hours. Respond. Handle what needs handling. Then close it. Nothing in your inbox is an emergency.</p>
+          <h3>Responding to Emails and DMs</h3>
+          <p>When you're new, every DM feels like it needs an immediate response. It doesn't. Here's your new rule:</p>
+          <p>Check and respond to DMs and emails once or twice a day, during your work hours. That's it. Nobody is going to stop buying from you because you took 4 hours to reply.</p>
         </div>
-
         <div class="content-card">
-          <h3>Batch Your DMs and Emails</h3>
-          <p>When you're new, every DM feels like it needs an immediate response. It doesn't. People are way more patient than you think. A few hours is totally fine. A day is fine for most things.</p>
-          <p>Pick a time to respond to messages. Maybe during your work hours, right at the end of the day. Batch them. Answer everything at once. It's faster, less stressful, and your personal time stays personal.</p>
-          <p>What's not fine is training yourself to drop everything every time your phone lights up. That's not a business. That's a leash.</p>
+          <h3>Talk to Your People</h3>
+          <p>If you have a partner, spouse, or family members in your house, have the conversation. Tell them when your work hours are. Tell them what you need during that time. This isn't selfish — it's how businesses survive.</p>
+          <p>Even a simple "Hey, I'm working from 1-3 during nap time. Can you handle things if one of the kids wakes up?" goes a long way.</p>
         </div>
 
-        <div class="content-card">
-          <h3>Close the Laptop</h3>
-          <p>When your work hours are over, close the laptop. Not minimize the tab. Close the whole thing. Put it away. Walk away.</p>
-          <p>I keep my laptop in my office. It doesn't come to the couch. It doesn't come to the dinner table. When I leave my office, work stays there. That one boundary has probably been the single most effective thing I've done for my mental health as a business owner.</p>
-          <p>You're building this business so you can have a better life. Not so your business can take over your life. Protect your time. It's the most valuable thing you have.</p>
-        </div>
-
+        <div class="checklist-header">&#9745; Your Checklist</div>
         <div class="checklist">
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Write down your specific work hours and days</div>
+            <div class="check-label">Write down your work hours (post them somewhere visible)</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Tell your partner or someone in your house about your work schedule</div>
+            <div class="check-label">Turn off Instagram notifications right now</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Turn off your Instagram notifications (all of them, right now)</div>
+            <div class="check-label">Set specific times to check email and DMs (2x per day max)</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">Set a specific time to batch-respond to emails and DMs during work hours</div>
+            <div class="check-label">Have the conversation with your partner/family about your work time</div>
           </div>
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box">&#10003;</div>
-            <div class="check-label">When your work time is over, close the laptop. Not minimize. Close.</div>
+            <div class="check-label">Delete or mute any group chats that drain your energy</div>
           </div>
         </div>
 
-        <div class="tip-box">&#128161; <strong>You did it.</strong> All 8 lessons. Your business has a real foundation now. You've got a name, a domain, you're registered, you have a professional email, a bookkeeping system, a way for people to buy from you, a workspace, and boundaries. You didn't just think about it. You built it. Now go make your first sale. Or your next one.</div>
+        <div class="tip-box">&#128161; <strong>Remember:</strong> You are building this business to support your life, not take it over. Boundaries aren't a luxury — they're the foundation of a business that lasts.</div>
       </div>
 
       <div class="mark-complete-row">
@@ -1249,38 +1360,28 @@ body { background: var(--color-bg); font-family: 'Nunito', sans-serif; color: va
           <div class="next-step-content">
             <div class="next-step-tag">Recommended Next</div>
             <div class="next-step-title">Brand Detective</div>
-            <div class="next-step-desc">Figure out your brand identity and messaging using AI. You'll walk away with your brand name direction, color palette, voice guide, and website copy. All generated from your own words and story.</div>
-            <a class="next-step-btn" href="#">Grab the Brand Detective &#8594;</a>
+            <div class="next-step-desc">Figure out your brand identity and messaging using AI. You'll walk away with your brand name direction, color palette, voice guide, and website copy — all generated from your own words and story.</div>
+            <a class="next-step-btn" href="https://simplecreator.samcart.com/products/the-brand-detective-bsk" target="_blank">Grab the Brand Detective &#8594;</a>
           </div>
         </div>
 
         <div class="next-step-card">
           <div class="next-step-number">2</div>
           <div class="next-step-content">
-            <div class="next-step-tag">Quick Win</div>
-            <div class="next-step-title">6-Figure Branding Hacks</div>
-            <div class="next-step-desc">The exact tools and shortcuts I used to build an entire brand in 24 hours that went on to hit six figures in 10 months. Coolors, Canva, Pinterest mood boarding, AI. All of it in one guide.</div>
-            <a class="next-step-btn" href="#">Get the Guide &#8594;</a>
+            <div class="next-step-tag">Get Found</div>
+            <div class="next-step-title">Instagram Passive Sales System</div>
+            <div class="next-step-desc">Stop posting into the void. Learn the system that lets Instagram work for you — without posting every single day. A $5/day strategy that changes everything.</div>
+            <a class="next-step-btn" href="https://simplecreator.samcart.com/products/ipss-organic" target="_blank">Check Out IPSS &#8594;</a>
           </div>
         </div>
 
         <div class="next-step-card">
           <div class="next-step-number">3</div>
           <div class="next-step-content">
-            <div class="next-step-tag">Get Found</div>
-            <div class="next-step-title">Instagram Passive Sales System</div>
-            <div class="next-step-desc">Stop posting into the void. Learn the system that lets Instagram work for you without posting every single day. A $5/day strategy that changes everything.</div>
-            <a class="next-step-btn" href="#">Check Out IPSS &#8594;</a>
-          </div>
-        </div>
-
-        <div class="next-step-card">
-          <div class="next-step-number">4</div>
-          <div class="next-step-content">
             <div class="next-step-tag">Level Up</div>
             <div class="next-step-title">Want More Support?</div>
             <div class="next-step-desc">The SCC student community is where you can connect with other women building businesses just like yours. Share wins, ask questions, get feedback, and never feel like you're figuring this out alone.</div>
-            <a class="next-step-btn" href="#">Learn About the Community &#8594;</a>
+            <a class="next-step-btn" href="https://simplecreator.samcart.com/products/coaching-community-sidebar" target="_blank">Learn About the Community &#8594;</a>
           </div>
         </div>
 
@@ -1349,7 +1450,7 @@ const nudgeMessages = [
 // window.storage is the cross-device sync layer (persistent storage API)
 // localStorage is the fast local cache
 function storageKey(email) {
-  return KEY_PREFIX + email.replace(/[@]/g, '_at_').replace(/[.]/g, '_').replace(/[^a-z0-9_\-]/g, '');
+  return KEY_PREFIX + email.replace(/[^a-z0-9@._\-]/g, '');
 }
 
 function buildSaveData() {
@@ -1542,6 +1643,16 @@ function updateProgress() {
 // ===== NAVIGATION =====
 function goLesson(n) {
   currentLesson = n;
+
+  // Stop audio if playing
+  if (audioElement) {
+    audioElement.pause();
+    if (currentAudioLesson) {
+      const prevEls = getPlayerEls(currentAudioLesson);
+      if (prevEls) prevEls.playBtn.innerHTML = '&#9654;';
+    }
+  }
+
   // Hide all lesson pages
   for (let i = 1; i <= TOTAL_LESSONS; i++) {
     const el = document.getElementById('lesson' + i);
@@ -1733,15 +1844,106 @@ function checkAutoComplete(lessonNum) {
   }
 }
 
-// ===== AUDIO (placeholder) =====
+// ===== AUDIO PLAYER =====
+const AUDIO_BASE = 'https://simplecreatorco.github.io/business-starter-kit/';
+const audioFiles = {
+  1: 'lesson-1.m4a',
+  2: 'lesson-2.m4a',
+  3: 'lesson-3.m4a',
+  4: 'lesson-4.m4a',
+  5: 'lesson-5.m4a',
+  6: 'lesson-6.m4a',
+  7: 'lesson-7.m4a',
+  8: 'lesson-8.m4a',
+};
+
+let currentAudioLesson = null;
+let audioElement = null;
+
+function getPlayerEls(n) {
+  const lesson = document.getElementById('lesson' + n);
+  if (!lesson) return null;
+  return {
+    playBtn: lesson.querySelector('.play-btn'),
+    scrub: lesson.querySelector('.audio-scrub'),
+    timeEl: lesson.querySelector('.audio-time'),
+    speedBtn: lesson.querySelector('.audio-speed'),
+  };
+}
+
+function formatTime(s) {
+  if (isNaN(s) || !isFinite(s)) return '--:--';
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
 function toggleAudio(n) {
-  alert('Audio coming soon! Scroll down for the written version.');
+  const els = getPlayerEls(n);
+  if (!els) return;
+
+  // If switching to a different lesson's audio
+  if (currentAudioLesson !== n) {
+    // Reset previous player UI
+    if (currentAudioLesson && audioElement) {
+      const prevEls = getPlayerEls(currentAudioLesson);
+      if (prevEls) prevEls.playBtn.innerHTML = '&#9654;';
+    }
+    // Create or reset audio element
+    if (audioElement) { audioElement.pause(); audioElement.remove(); }
+    audioElement = new Audio(AUDIO_BASE + audioFiles[n]);
+    currentAudioLesson = n;
+
+    // Restore speed setting from button
+    const speedText = els.speedBtn.textContent.replace('x', '');
+    audioElement.playbackRate = parseFloat(speedText) || 1;
+
+    // Time update handler
+    audioElement.addEventListener('timeupdate', function() {
+      if (!audioElement.duration) return;
+      const pct = (audioElement.currentTime / audioElement.duration) * 100;
+      els.scrub.value = pct;
+      els.timeEl.textContent = formatTime(audioElement.currentTime) + ' / ' + formatTime(audioElement.duration);
+    });
+
+    // When metadata loads, show duration
+    audioElement.addEventListener('loadedmetadata', function() {
+      els.timeEl.textContent = '0:00 / ' + formatTime(audioElement.duration);
+    });
+
+    // When audio ends
+    audioElement.addEventListener('ended', function() {
+      els.playBtn.innerHTML = '&#9654;';
+    });
+  }
+
+  // Toggle play/pause
+  if (audioElement.paused) {
+    audioElement.play();
+    els.playBtn.innerHTML = '&#10074;&#10074;';
+  } else {
+    audioElement.pause();
+    els.playBtn.innerHTML = '&#9654;';
+  }
 }
+
 function cycleSpeed(btn) {
-  const speeds = ['1x', '1.25x', '1.5x', '2x'];
-  const current = speeds.indexOf(btn.textContent);
-  btn.textContent = speeds[(current + 1) % speeds.length];
+  const speeds = [1, 1.25, 1.5, 2];
+  const labels = ['1x', '1.25x', '1.5x', '2x'];
+  const current = labels.indexOf(btn.textContent);
+  const next = (current + 1) % labels.length;
+  btn.textContent = labels[next];
+  if (audioElement) audioElement.playbackRate = speeds[next];
 }
+
+// Scrub bar interaction — attach to all scrub bars
+document.querySelectorAll('.audio-scrub').forEach(function(scrub) {
+  scrub.addEventListener('input', function() {
+    if (audioElement && audioElement.duration) {
+      audioElement.currentTime = (scrub.value / 100) * audioElement.duration;
+    }
+  });
+});
 
 // ===== MOBILE SIDEBAR =====
 function toggleSidebar() {
@@ -1749,9 +1951,26 @@ function toggleSidebar() {
   document.getElementById('sidebarOverlay').classList.toggle('visible');
 }
 
-// ===== DEMO MODE (disabled for testing) =====
+// ===== TRANSCRIPTS =====
+function toggleTranscript(n, btn) {
+  var el = document.getElementById('transcript' + n);
+  if (!el) return;
+  el.classList.toggle('visible');
+  btn.classList.toggle('open');
+}
+
+function copyTranscript(n) {
+  var el = document.getElementById('transcript' + n);
+  if (!el) return;
+  var text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    toast();
+  });
+}
+
+// ===== DEMO MODE =====
 (function() {
-  return; // Skip demo mode entirely
+  // Always show demo bar in iframe context (Claude preview)
   let inClaude = false;
   try { inClaude = (window.self !== window.top); } catch(e) { inClaude = true; }
   if (!inClaude && !location.search.includes('demo')) return;
